@@ -1,0 +1,430 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameXD- Gaming Website</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        header {
+            background: url(background1.jpg);
+            width: 100%;
+            height: auto;
+            margin: 0px;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        nav {
+            background: linear-gradient(37deg, #f40029e9, #db0a0ac4, #ff1010c6);
+            position: fixed;
+            display: flex;
+            width: 100%;
+            height: 60px;
+            margin-top: 14px;
+            align-items: center;
+        }
+
+        .logo h3 {
+            color: rgb(242, 242, 242);
+            text-shadow: 0 0 2px rgb(251, 0, 0);
+            font-weight: bolder;
+            letter-spacing: 4px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            margin-left: 0px;
+            font-size: 20px;
+        }
+
+        .logo span {
+            color: rgb(255, 0, 85);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 0px;
+            font-weight: bolder;
+            font-style: italic;
+            font-size: 26px;
+            text-shadow: 0 0 2px rgb(255, 0, 85);
+        }
+
+        .logo22 span {
+            color: rgb(255, 0, 85);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 0px;
+            font-weight: bolder;
+            font-style: italic;
+            font-size: 20px;
+            text-shadow: 0 0 2px rgb(255, 0, 85);
+        }
+
+        body {
+            background-color: rgb(255, 255, 255);
+        }
+
+        .logo2 h3 {
+            color: white;
+            font-weight: bolder;
+            font-style: italic;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 4px;
+            font-size: 26px;
+        }
+
+        .logo2 span {
+            color: rgb(255, 0, 85);
+            font-weight: bolder;
+            font-style: italic;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 0px;
+            font-size: 26px;
+            text-shadow: 0 0 2px rgb(255, 0, 85);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 200px;
+            height: 100%;
+            background: linear-gradient(#090909, #010101d2, #010101cb, #00000084, #ff002f3f);
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.show {
+            left: 0;
+        }
+
+        /* CSS code to style the content in the sidebar */
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* CSS code to adjust the main content area */
+        .main-content {
+            margin-left: 320px;
+            padding: 20px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: rgb(233, 233, 233);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        /* CSS code to style the toggle button */
+        .toggle-btn {
+            position: fixed;
+            font-size: 28px;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 9999;
+            color: white;
+        }
+
+        .lgimg {
+            align-items: center;
+            text-align: left;
+        }
+
+        .lgimg2 {
+            text-align: left;
+            align-items: center;
+            display: flex;
+        }
+
+        .lgimg2 img {
+            width: 50px;
+            height: 50px;
+            margin: 2px;
+        }
+
+        .lgimg img {
+            width: 50px;
+            height: 50px;
+            margin-left: 12px;
+        }
+
+       
+        .navimage {
+            align-items: center;
+            text-align: center;
+        }
+
+        .navimage img {
+            margin-left: 14px;
+            width: 100px;
+        }
+
+        .hr hr {
+            color: black;
+        }
+
+       
+        .background {
+            background: linear-gradient(to right, #ff0090, #d503ff, #6200ff, #00e5ff, #ffee00);
+            padding: 1px;
+        }
+        .slider { position: relative; width: 100%; overflow: hidden; margin: 20px auto; }
+        .slides { display: flex; transition: transform 0.5s ease-in-out; }
+        .slides img { width: 100%; height: 50%; border-radius: 10px; }
+        .welcome { text-align: center; margin-top: 100px; padding: 50px 20px; font-size: 24px; }
+        .welcome h1{
+            color: rgb(232, 0, 19);
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            font-family: 16px;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+        .welcome p{
+            color: black;
+            font-family: Verdana, Geneva, sans-serif;
+            text-align: center;
+            font-family: 14px;
+            align-items: center;
+        }
+       .products h1{
+        text-align: center;
+        align-items: center;
+        letter-spacing: 4px;
+        color: rgb(35, 35, 35);
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-style: bold;
+       }
+       .products {
+      padding: 40px 20px;
+    }
+
+    .products h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 32px;
+      letter-spacing: 2px;
+    }
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .product-item {
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+    }
+
+    .product-item h3 {
+      margin: 10px 0;
+    }
+
+    .product-item button {
+      background-color: #ff0033;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .product-item button:hover {
+      background-color: #cc002a;
+    }
+
+    #buyForm {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ffffff;
+      padding: 35px 30px;
+      border-radius: 14px;
+      border: 2px solid #ff0033;
+      z-index: 1000;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 420px;
+    }
+
+    #buyForm h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 26px;
+      color: #ff0033;
+      text-align: center;
+    }
+
+    #buyForm input,
+    #buyForm textarea {
+      width: 100%;
+      margin-bottom: 18px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .form-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #buyForm button[type="submit"] {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      flex: 1;
+      margin-right: 10px;
+    }
+
+    #buyForm button[type="button"] {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+    .product-item img{
+        width: 120;
+        height: auto;
+    }
+    .img2 img{
+        width: 90px;
+        height: auto;
+    }
+    .img3 img{
+        width: 170px;
+        height: auto;
+    }
+      </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="background">
+            <nav>
+                <div class="lgimg">
+                    <img src="harjuslogo-removebg-preview.png">
+                </div>
+                <div class="logo">
+                    <h3>
+                        <b>
+                          HARJUS 
+                        </b>
+                    </h3>
+                </div>
+                <div class="sidebar">
+                    <br>
+                    <div class="lgimg2">
+                        <img src="harjuslogo-removebg-preview.png">
+                        <div class="logo2">
+                            <h3>
+                                HARJUS
+                            </h3>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <a href="#">
+                        <p4><b>Contact/Feedback!</b></p4>
+                    </a>
+
+                </div>
+                <div class="toggle-btn" onclick="toggleSidebar()">
+                    <!-- icon for the toggle button goes here -->
+                    &#9776;
+                </div>
+        </div>
+        </nav>
+        </header>
+      <br>
+      <br>
+      <br>
+      <br>
+      <section class="welcome">
+        <h1>Welcome to Harjus Hardwares</h1>
+        <p>Your Trusted Partner For Industrial Pneumatic Equipment</p>
+      </section>
+  
+      <section class="products">
+        <h1>Our Products</h1>
+        <div class="product-grid">
+          <div class="product-item">
+            <img src="accc-removebg-preview.png" alt="p-img">
+            <h3>Air Compressor</h3>
+            <p>Price: ₹15,000</p>
+            <button onclick="openForm('Air Compressor', 15000)">Buy Now</button>
+          </div>
+          <div class="product-item">
+            <div class="img2">           <img src="png-transparent-solenoid-valve-control-valves-manufacturing-solenoid-valve-angle-metal-oil-burner-thumbnail-removebg-preview.png" alt="">
+            </div>
+            <h3>Pneumatic Valve</h3>
+            <p>Price: ₹3,000</p>
+            <button onclick="openForm('Pneumatic Valve', 3000)">Buy Now</button>
+          </div>
+          <div class="product-item">
+            <div class="img3">
+                <img src="R2020990-01-removebg-preview (2).png" alt="">
+            </div>
+            <h3>Hose Pipe</h3>
+            <p>Price: ₹1,000</p>
+            <button onclick="openForm('Hose Pipe', 1000)">Buy Now</button>
+          </div>
+        </div>
+      </section>
+   
+    <script>
+      function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('show');
+      }
+  
+      function openForm(product, price) {
+        localStorage.setItem("product", product);
+        localStorage.setItem("price", `₹${price}`);
+        window.location.href = "buyform.html";
+      }
+    </script>
+  </body>
+  </html>
+</body>
+
+</html>
