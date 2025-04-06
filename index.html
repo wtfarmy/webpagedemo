@@ -134,6 +134,8 @@
 
         .lgimg {
             align-items: center;
+            margin-right: 18px;
+            border-radius: 50%;
             text-align: left;
         }
 
@@ -198,7 +200,7 @@
         text-align: center;
         align-items: center;
         letter-spacing: 4px;
-        color: rgb(35, 35, 35);
+        color: rgb(38, 38, 38);
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         font-style: bold;
        }
@@ -231,8 +233,19 @@
 
     .product-item h3 {
       margin: 10px 0;
+      color: rgb(47, 47, 47);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
-
+    .product-item p {
+      margin: 10px 0;
+      color: rgb(30, 197, 0);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .product-item span{
+      margin: 10px 0;
+      color: rgb(30, 30, 30);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
     .product-item button {
       background-color: #ff0033;
       color: white;
@@ -332,6 +345,69 @@
         width: 170px;
         height: auto;
     }
+    .footer {
+  background-color: #111;
+  color: #ccc;
+  padding: 40px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer h2, .footer h3 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.footer-about,
+.footer-links,
+.footer-contact {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #00ffc8;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #777;
+}
+.iconpg img{
+  text-align: left;
+  height: 55px;
+  width: auto;
+  text-decoration: none;
+  border-radius: 50%;
+  position: fixed;
+}
       </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -343,7 +419,7 @@
         <div class="background">
             <nav>
                 <div class="lgimg">
-                    <img src="harjuslogo-removebg-preview.png">
+                    <img src="WhatsApp Image 2025-04-06 at 10.15.53 PM.jpeg">
                 </div>
                 <div class="logo">
                     <h3>
@@ -355,7 +431,7 @@
                 <div class="sidebar">
                     <br>
                     <div class="lgimg2">
-                        <img src="harjuslogo-removebg-preview.png">
+                        <img src="WhatsApp Image 2025-04-06 at 10.15.53 PM.jpeg">
                         <div class="logo2">
                             <h3>
                                 HARJUS
@@ -365,8 +441,13 @@
                     <br>
                     <br>
                     <a href="#">
-                        <p4><b>Contact/Feedback!</b></p4>
-                    </a>
+                      <p4><b>Our Story!</b></p4>
+                  </a>
+                  <br>
+                  <br>
+                  <a href="#">
+                    <p4><b>Contact/Feedback!</b></p4>
+                </a>
 
                 </div>
                 <div class="toggle-btn" onclick="toggleSidebar()">
@@ -384,34 +465,38 @@
         <h1>Welcome to Harjus Hardwares</h1>
         <p>Your Trusted Partner For Industrial Pneumatic Equipment</p>
       </section>
-  
+  <div class="iconpg">
+    <a href=""><img src="0fc84eea-7dc7-495c-887d-49e8381b8e6e.jpg" alt="" text-align="left"></a>
+  </div>
       <section class="products">
         <h1>Our Products</h1>
         <div class="product-grid">
           <div class="product-item">
-            <img src="accc-removebg-preview.png" alt="p-img">
-            <h3>Air Compressor</h3>
-            <p>Price: ₹15,000</p>
+            <img src="WhatsApp_Image_2025-04-06_at_10.06.14_PM-removebg-preview.png" alt="p-img">
+            <h3>Air Blow Guns</h3>
+            <p><span> Price: </span>₹15,000</p>
             <button onclick="openForm('Air Compressor', 15000)">Buy Now</button>
           </div>
           <div class="product-item">
             <div class="img2">           <img src="png-transparent-solenoid-valve-control-valves-manufacturing-solenoid-valve-angle-metal-oil-burner-thumbnail-removebg-preview.png" alt="">
             </div>
             <h3>Pneumatic Valve</h3>
-            <p>Price: ₹3,000</p>
-            <button onclick="openForm('Pneumatic Valve', 3000)">Buy Now</button>
+            <p><span>Price: </span>₹3,000</p>
+            <br>
+            <button onclick="openForm1('Pneumatic Valve', 3000)">Buy Now</button>
           </div>
           <div class="product-item">
             <div class="img3">
-                <img src="R2020990-01-removebg-preview (2).png" alt="">
+                <img src="images-removebg-preview (1).png" alt="">
             </div>
-            <h3>Hose Pipe</h3>
-            <p>Price: ₹1,000</p>
-            <button onclick="openForm('Hose Pipe', 1000)">Buy Now</button>
+            <h3>PU Pipe</h3>
+            <p><span>Price: </span>₹1,000</p>
+            <button onclick="openForm2('Hose Pipe', 1000)">Buy Now</button>
           </div>
         </div>
       </section>
-   
+   <br>
+   <br>
     <script>
       function toggleSidebar() {
         document.querySelector('.sidebar').classList.toggle('show');
@@ -422,8 +507,37 @@
         localStorage.setItem("price", `₹${price}`);
         window.location.href = "buyform.html";
       }
+      function openForm1(product, price) {
+        localStorage.setItem("product", product);
+        localStorage.setItem("price", `₹${price}`);
+        window.location.href = "buyform1.html";
+      }
+      function openForm2(product, price) {
+        localStorage.setItem("product", product);
+        localStorage.setItem("price", `₹${price}`);
+        window.location.href = "buyform2.html";
+      }
     </script>
   </body>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2>Harjus Hardwares</h2>
+        <p>Your one-stop shop for Industrial Pneumatic Equipment </p>
+      </div>
+  
+      <div class="footer-contact">
+        <h3>Contact</h3>
+        <p>Email: support@harjushardwares.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+  
+    <div class="footer-bottom">
+      <p>&copy; 2025 Harjus Hardwares. All rights reserved.</p>
+    </div>
+  </footer>
+  
   </html>
 </body>
 
