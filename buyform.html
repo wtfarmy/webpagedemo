@@ -102,7 +102,6 @@
     }
 
     .form-box {
-     
       padding: 30px;
       border-radius: 10px;
       max-width: 500px;
@@ -175,16 +174,10 @@
         font-size: 15px;
       }
     }
-
-   
   </style>
 </head>
 <body>
-<br>
-<br>
-<br>
-<br>
-<br>
+
   <div class="product-container">
     <!-- Image Viewer Section -->
     <div class="image-section">
@@ -233,13 +226,13 @@
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script>
-    const product = localStorage.getItem('product') || 'Hardware Item';
-    const price = localStorage.getItem('price') || '799';
+  <!-- Razorpay Script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-    document.getElementById('product').value = product;
-    document.getElementById('price').value = price;
+  <!-- Custom Script -->
+  <script>
+    const product = "Heavy Duty Air Blow Gun";
+    const price = "799";
 
     function showImage(thumb) {
       const mainImg = document.getElementById("main-display");
@@ -260,7 +253,7 @@
       }
 
       const options = {
-        key: "rzp_live_hM7IlXwg6HHhg4", // Replace with your Razorpay key
+        key: "rzp_live_cjbd8XQBgZYnti", // Replace with your actual key
         amount: totalAmount,
         currency: "INR",
         name: "Harjus India",
@@ -281,10 +274,6 @@
       const rzp = new Razorpay(options);
       rzp.open();
     }
-
-
-
   </script>
-
 </body>
 </html>

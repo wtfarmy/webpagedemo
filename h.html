@@ -2,149 +2,278 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Product List Slider</title>
+  <title>Product Viewer - Harjus Hardwares</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
+    * {
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+      background: #fefefe;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 1100px;
+      margin: auto;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .image-section {
+      flex: 1 1 300px;
+      max-width: 300px;
+      height: auto;
+    }
+
+    .main-image {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .thumbnails {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .thumbnails img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: 0.3s;
+    }
+
+    .thumbnails img.active,
+    .thumbnails img:hover {
+      border-color: #007bff;
+    }
+
+    .details-section {
+      flex: 1 1 280px;
+    }
+
+    .product-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .rating {
+      color: #f8c32b;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #28a745;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 16px;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .form-box {
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 100%;
     }
 
     h2 {
       text-align: center;
+      color: #323232;
       margin-bottom: 20px;
+      font-size: 22px;
     }
 
-    .slider-wrapper {
-      position: relative;
-      max-width: 1000px;
-      margin: auto;
-      overflow: hidden;
-    }
-
-    .product-slider {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding-bottom: 10px;
-    }
-
-    .product-card {
-      flex: 0 0 auto;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-      width: 220px;
-      transition: transform 0.3s ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .product-card img {
+    input,
+    textarea,
+    select {
       width: 100%;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .product-info {
-      padding: 15px;
-    }
-
-    .product-title {
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
       font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 5px;
     }
 
-    .product-price {
-      color: #28a745;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .product-rating {
-      color: #f8c32b;
-      font-size: 14px;
-    }
-
-    .nav-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.6);
+    button {
+      background-color: #28a745;
       color: white;
+      padding: 12px;
       border: none;
-      font-size: 24px;
-      padding: 10px;
-      border-radius: 50%;
+      border-radius: 6px;
+      font-size: 16px;
+      width: 100%;
       cursor: pointer;
-      z-index: 2;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
     }
 
-    .nav-arrow.left {
-      left: 10px;
+    button:hover {
+      background-color: #218838;
     }
 
-    .nav-arrow.right {
-      right: 10px;
+    .back-btn {
+      background-color: #dc3545;
     }
 
-    @media (max-width: 600px) {
-      .product-card {
-        width: 160px;
+    .back-btn:hover {
+      background-color: #c82333;
+    }
+
+    @media screen and (max-width: 768px) {
+      .product-container {
+        padding: 15px;
       }
 
-      .product-card img {
-        height: 140px;
+      .main-image {
+        max-height: 300px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      input,
+      textarea,
+      select {
+        font-size: 15px;
+      }
+
+      button {
+        font-size: 15px;
       }
     }
   </style>
 </head>
 <body>
 
-  <h2>Recommended Products</h2>
-
-  <div class="slider-wrapper">
-    <button class="nav-arrow left" onclick="scrollSlider(-1)">❮</button>
-    <div class="product-slider" id="productSlider">
-      <!-- Product Card -->
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200x180?text=Product+1" alt="Product 1">
-        <div class="product-info">
-          <div class="product-title">Air Blow Gun</div>
-          <div class="product-price">₹799</div>
-          <div class="product-rating">★★★★☆</div>
-        </div>
+  <div class="product-container">
+    <!-- Image Viewer Section -->
+    <div class="image-section">
+      <img id="main-display" class="main-image" src="WhatsApp_Image_2025-04-06_at_10.06.14_PM-removebg-preview.png" alt="Product">
+      <div class="thumbnails">
+        <img src="WhatsApp_Image_2025-04-06_at_10.06.14_PM-removebg-preview.png" class="active" onclick="showImage(this)">
+        <img src="cd141dc9-73c7-40e7-b406-23304ee268c7-removebg-preview.png" onclick="showImage(this)">
+        <img src="1b91f231-75d3-40d4-93bf-a716be37d3d1-removebg-preview.png" onclick="showImage(this)">
       </div>
+    </div>
 
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200x180?text=Product+2" alt="Product 2">
-        <div class="product-info">
-          <div class="product-title">PU Pipe 5m</div>
-          <div class="product-price">₹299</div>
-          <div class="product-rating">★★★☆☆</div>
-        </div>
+    <!-- Product Detail and Form Section -->
+    <div class="details-section">
+      <div class="product-title">Heavy Duty Air Blow Gun</div>
+      <div class="rating">★★★★☆ (4.2/5)</div>
+      <div class="price">₹799.00</div>
+      <div class="description">
+        This industrial-grade air blow gun is perfect for cleaning machinery, filters, and other hard-to-reach spaces. Built with durable materials and ergonomic grip for comfort. Compatible with PU pipes and standard pneumatic setups.
       </div>
+      <div class="form-box">
+        <h2>Complete Your Purchase</h2>
+        <form id="buyForm" action="https://formsubmit.co/roqfatma786@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://yourdomain.com/thankyou.html">
 
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200x180?text=Product+3" alt="Product 3">
-        <div class="product-info">
-          <div class="product-title">Pneumatic Valve</div>
-          <div class="product-price">₹499</div>
-          <div class="product-rating">★★★★★</div>
-        </div>
+          <label for="category">Category</label>
+          <select id="category" name="Category" required>
+            <option value="">Select Category</option>
+            <option value="Pipe">Air Blow Gun model no. HABG-06</option>
+          </select>
+
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" name="Quantity" min="1" value="1" required>
+
+          <input type="email" id="email" name="Email" placeholder="Your Email" required>
+          <input type="tel" id="phone" name="Phone" placeholder="Your Phone Number" required>
+          <textarea name="Message" placeholder="Any Message (Optional)" rows="4"></textarea>
+
+          <input type="hidden" id="payment_id" name="Payment_ID" />
+
+          <button type="button" onclick="payNow()">Pay & Submit</button>
+        </form>
+        <button class="back-btn" onclick="history.back()">Go Back</button>
       </div>
+    </div>
+  </div>
 
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200x180?text=Product+4" alt="Product 4">
-        <div class="product-info">
-          <div class="product-title">Connector Set</div>
-          <div class="product-price">₹199</div>
-          <div class="product
+  <!-- Razorpay Script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- Custom Script -->
+  <script>
+    const product = "Heavy Duty Air Blow Gun";
+    const price = "799";
+
+    function showImage(thumb) {
+      const mainImg = document.getElementById("main-display");
+      mainImg.src = thumb.src;
+      document.querySelectorAll('.thumbnails img').forEach(img => img.classList.remove('active'));
+      thumb.classList.add('active');
+    }
+
+    function payNow() {
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const quantity = parseInt(document.getElementById('quantity').value) || 1;
+      const totalAmount = parseInt(price) * quantity * 100;
+
+      if (!email || !phone) {
+        alert("Please fill in Email and Phone Number.");
+        return;
+      }
+
+      const options = {
+        key: "rzp_live_cjbd8XQBgZYnti", // Replace with your actual key
+        amount: totalAmount,
+        currency: "INR",
+        name: "Harjus India",
+        description: product,
+        handler: function (response) {
+          document.getElementById('payment_id').value = response.razorpay_payment_id;
+          document.getElementById('buyForm').submit();
+        },
+        prefill: {
+          email: email,
+          contact: phone
+        },
+        theme: {
+          color: "#28a745"
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
+    }
+  </script>
+</body>
+</html>
