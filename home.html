@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harjus Hardwares - Products</title>
+  <style>
+       * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        header {
+            background: url(background1.jpg);
+            width: 100%;
+            height: auto;
+            margin: 0px;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        nav {
+            background: linear-gradient(37deg, #f40029e9, #db0a0ac4, #ff1010c6);
+            position: fixed;
+            display: flex;
+            width: 100%;
+            height: 60px;
+            margin-top: 14px;
+            align-items: center;
+        }
+
+        .logo h3 {
+            color: rgb(242, 242, 242);
+            text-shadow: 0 0 2px rgb(251, 0, 0);
+            font-weight: bolder;
+            letter-spacing: 4px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            margin-left: 0px;
+            font-size: 20px;
+        }
+
+        .logo span {
+            color: rgb(255, 0, 85);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 0px;
+            font-weight: bolder;
+            font-style: italic;
+            font-size: 26px;
+            text-shadow: 0 0 2px rgb(255, 0, 85);
+        }
+
+        .logo22 span {
+            color: rgb(255, 0, 85);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 0px;
+            font-weight: bolder;
+            font-style: italic;
+            font-size: 20px;
+            text-shadow: 0 0 2px rgb(255, 0, 85);
+        }
+
+        body {
+            background-color: rgb(255, 255, 255);
+        }
+
+        .logo2 h3 {
+            color: white;
+            font-weight: bolder;
+            font-style: italic;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 4px;
+            font-size: 26px;
+        }
+
+        .logo2 span {
+            color: rgb(255, 0, 85);
+            font-weight: bolder;
+            font-style: italic;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 0px;
+            font-size: 26px;
+            text-shadow: 0 0 2px rgb(255, 0, 85);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 200px;
+            height: 100%;
+            background: linear-gradient(#090909, #010101d2, #010101cb, #00000084, #ff002f3f);
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.show {
+            left: 0;
+        }
+
+        /* CSS code to style the content in the sidebar */
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* CSS code to adjust the main content area */
+        .main-content {
+            margin-left: 320px;
+            padding: 20px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: rgb(233, 233, 233);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        /* CSS code to style the toggle button */
+        .toggle-btn {
+            position: fixed;
+            font-size: 28px;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 9999;
+            color: white;
+        }
+
+        .lgimg {
+            align-items: center;
+            margin-right: 18px;
+            border-radius: 50%;
+            text-align: left;
+        }
+
+        .lgimg2 {
+            text-align: left;
+            align-items: center;
+            display: flex;
+        }
+
+        .lgimg2 img {
+            width: 50px;
+            height: 50px;
+            margin: 2px;
+        }
+
+        .lgimg img {
+            width: 50px;
+            height: 50px;
+            margin-left: 12px;
+        }
+
+       
+        .navimage {
+            align-items: center;
+            text-align: center;
+        }
+
+        .navimage img {
+            margin-left: 14px;
+            width: 100px;
+        }
+
+        .hr hr {
+            color: black;
+        }
+
+       
+        .background {
+            background: linear-gradient(to right, #ff0090, #d503ff, #6200ff, #00e5ff, #ffee00);
+            padding: 1px;
+        }
+    .welcome {
+      text-align: center;
+      font-size: 2rem;
+      margin: 1rem auto;
+      white-space: nowrap;
+      overflow: hidden;
+      color: rgb(51, 51, 51);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      width: 22ch;
+      animation: typing 3s steps(22), blink 0.5s step-end infinite alternate;
+    }
+
+    @keyframes typing {
+      0% { width: 0; }
+      100% { width: 22ch; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 1rem;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+
+    .info h2 {
+      font-size: 1.5rem;
+      color: #2d2d2d;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .price {
+      color: rgb(227, 0, 0);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .stock {
+      color: #007b00;
+      margin: 0.5rem 0;
+    }
+
+    .options {
+      margin: 1rem 0;
+    }
+
+    .options label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    select {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .actions button {
+      padding: 0.7rem 1.5rem;
+      margin: 0.5rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 5px;
+    }
+
+    .cart {
+      background-color: #bfbfbf;
+      color: rgb(255, 255, 255);
+    }
+
+    .buy {
+      background-color: #dd0000;
+      color: rgb(255, 255, 255);
+    }
+
+    @media (max-width: 600px) {
+      .welcome {
+        font-size: 1.5rem;
+      }
+
+      .info h2 {
+        font-size: 1.2rem;
+      }
+
+      .actions button {
+        width: 100%;
+        margin: 0.3rem 0;
+      }
+
+      .slider {
+        height: 200px;
+      }
+    }
+
+    /* notification bar */
+    .notify-circle {
+      position: fixed;
+      top: 400px;
+      right: 20px;
+      width: 55px;
+      height: 55px;
+      background-color: red;
+      color: white;
+      font-size: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 1000;
+    }
+.headhr{
+  color: rgb(57, 57, 57);
+  text-align: center;
+  align-items: center;
+  letter-spacing: 3px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.titpg{
+  text-align: center;
+  align-items: center;
+  color: rgb(52, 52, 52);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.footer {
+  background-color: #111;
+  color: #ccc;
+  padding: 40px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer h2, .footer h3 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.footer-about,
+.footer-links,
+.footer-contact {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #00ffc8;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #777;
+}
+a{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.product-rating {
+      color: #f8c32b;
+      font-size: 14px;
+    }
+
+
+    
+    .product-list22 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+  
+.info img{
+  width: 160px;
+  text-align: center;
+  align-items: center;
+  height: auto;
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="background">
+        <nav>
+            <div class="lgimg">
+                <img src="WhatsApp Image 2025-04-06 at 10.15.53 PM.jpeg">
+            </div>
+            <div class="logo">
+                <h3>
+                    <b>
+                      HARJUS 
+                    </b>
+                </h3>
+            </div>
+            <div class="sidebar">
+                <br>
+                <div class="lgimg2">
+                    <img src="WhatsApp Image 2025-04-06 at 10.15.53 PM.jpeg">
+                    <div class="logo2">
+                        <h3>
+                            HARJUS
+                        </h3>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <a href="#">
+                  <p4><b>Our Story!</b></p4>
+              </a>
+              <br>
+              <br>
+              <a href="#">
+                <p4><b>Contact/Feedback!</b></p4>
+            </a>
+
+            </div>
+            <div class="toggle-btn" onclick="toggleSidebar()">
+                <!-- icon for the toggle button goes here -->
+                &#9776;
+            </div>
+    </div>
+    </nav>
+    </header>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="welcome"><b>Welcome to Harjus India</b></div>
+ <br>
+ <div class="titpg">
+  <p>Your Trusted Partner For Industrial Pneumatic Equipment</p>
+ </div>
+ <br>
+ <br>
+ <br>
+ <div class="headhr">
+  <h1>
+    Our Products
+  </h1>
+ </div>
+  <!-- Product 1: Air Blow Gun -->
+   <div class="product-list22">
+  <div class="container">
+    <div class="info">
+      <img src="cd141dc9-73c7-40e7-b406-23304ee268c7-removebg-preview.png">
+      <h2>Air Blow Gun</h2>
+      <div class="price">₹499 <s style="color: gray">₹699</s></div>
+      <div class="product-rating">★★★★★</div>
+      <div class="stock">In Stock</div>
+      <div class="actions">
+        <button class="cart">Add to Cart</button>
+        <button class="buy"><a href="buyform.html">Buy Now</a></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product 2: Pneumatic Valve
+  <div class="container">
+    <div class="info">
+      <h2>Pneumatic Valve</h2>
+      <div class="price">₹899 <s style="color:  gray">₹1199</s></div>
+      <div class="product-rating">★★★★★</div>
+      <div class="stock">In Stock</div>
+      <div class="actions">
+        <button class="cart">Add to Cart</button>
+        <button class="buy"><a href="buyform2.html">Buy Now</a></button>
+      </div>
+    </div>
+  </div> -->
+ 
+  <!-- Product 3: PU Pipe -->
+  <div class="container">
+    <div class="info">
+      <img src="images-removebg-preview (1).png">
+      <h2>PU Pipe</h2>
+      <div class="price">₹299 <s style="color: gray">₹399</s></div>
+      <div class="product-rating">★★★★★</div>
+      <div class="stock">In Stock</div>
+      <div class="actions">
+        <button class="cart">Add to Cart</button>
+        <button class="buy"><a href="buyform1.html">Buy Now</a></button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="notify-circle">
+    🔔
+  </div>
+  
+</body>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-about">
+      <h2>Harjus Hardwares</h2>
+      <p>Your one-stop shop for Industrial Pneumatic Equipment </p>
+    </div>
+
+    <div class="footer-contact">
+      <h3>Contact</h3>
+      <p>Email: support@harjushardwares.com</p>
+      <p>Phone: +91 98765 43210</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Harjus Hardwares. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+  function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('show');
+      }
+
+
+       // Image Slider Logic
+    let slideIndex = 0;
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+
+    function showSlide(index) {
+      slideIndex = (index + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+    function nextSlide() {
+      showSlide(slideIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(slideIndex - 1);
+    }
+
+    // Optional: Auto-slide every 5 seconds
+    setInterval(() => {
+      nextSlide();
+    }, 5000);
+</script>
+</html>
