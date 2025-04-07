@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product List Slider</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .slider-wrapper {
+      position: relative;
+      max-width: 1000px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .product-slider {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+    }
+
+    .product-card {
+      flex: 0 0 auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      width: 220px;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .product-price {
+      color: #28a745;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .product-rating {
+      color: #f8c32b;
+      font-size: 14px;
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .nav-arrow.left {
+      left: 10px;
+    }
+
+    .nav-arrow.right {
+      right: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .product-card {
+        width: 160px;
+      }
+
+      .product-card img {
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Recommended Products</h2>
+
+  <div class="slider-wrapper">
+    <button class="nav-arrow left" onclick="scrollSlider(-1)">❮</button>
+    <div class="product-slider" id="productSlider">
+      <!-- Product Card -->
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200x180?text=Product+1" alt="Product 1">
+        <div class="product-info">
+          <div class="product-title">Air Blow Gun</div>
+          <div class="product-price">₹799</div>
+          <div class="product-rating">★★★★☆</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200x180?text=Product+2" alt="Product 2">
+        <div class="product-info">
+          <div class="product-title">PU Pipe 5m</div>
+          <div class="product-price">₹299</div>
+          <div class="product-rating">★★★☆☆</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200x180?text=Product+3" alt="Product 3">
+        <div class="product-info">
+          <div class="product-title">Pneumatic Valve</div>
+          <div class="product-price">₹499</div>
+          <div class="product-rating">★★★★★</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200x180?text=Product+4" alt="Product 4">
+        <div class="product-info">
+          <div class="product-title">Connector Set</div>
+          <div class="product-price">₹199</div>
+          <div class="product

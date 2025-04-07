@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harjus Hardwares</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding-top: 70px;
+    }
+
+    .navbar {
+      background-color: #222;
+      color: white;
+      padding: 10px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo h3 {
+      margin: 0;
+    }
+
+    .toggle-btn {
+      font-size: 28px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #111;
+      padding-top: 70px;
+      transition: left 0.3s ease;
+      z-index: 999;
+    }
+
+    .sidebar.show {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 15px;
+      text-decoration: none;
+      border-bottom: 1px solid #444;
+    }
+
+    .sidebar a:hover {
+      background-color: #333;
+    }
+
+    .headhr {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .headhr h1 {
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    .slider {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      padding: 0 10px;
+      position: relative;
+      max-width: 100%;
+    }
+
+    .slider img {
+      width: 100%;
+      max-width: 90vw;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .slider-buttons {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 10px;
+    }
+
+    .slider-buttons button {
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .welcome {
+      text-align: center;
+      margin: 20px;
+      font-size: 1.3rem;
+      color: #444;
+    }
+
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    .container img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 5px;
+    }
+
+    .titpg {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .actions button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 8px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .notify-circle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      z-index: 1000;
+    }
+
+    .footer {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer h3 {
+      margin-top: 0;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 60px;
+      }
+
+      .product-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .container {
+        width: 90%;
+        margin: 0 auto;
+      }
+
+      .logo h3 {
+        font-size: 16px;
+      }
+
+      .toggle-btn {
+        display: block;
+        font-size: 24px;
+        top: 15px;
+        right: 15px;
+      }
+
+      .sidebar {
+        width: 80%;
+        left: -100%;
+      }
+
+      .sidebar.show {
+        left: 0;
+      }
+
+      .welcome {
+        font-size: 1.2rem;
+        width: auto;
+      }
+
+      .titpg {
+        font-size: 1rem;
+        margin: 10px;
+      }
+
+      .headhr h1 {
+        font-size: 1.5rem;
+      }
+
+      .slider-buttons button {
+        padding: 4px;
+        font-size: 16px;
+      }
+
+      .actions button {
+        width: 100%;
+        margin: 5px 0;
+      }
+
+      .notify-circle {
+        bottom: 20px;
+        right: 15px;
+        top: auto;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slider img {
+        max-height: 200px;
+      }
+
+      .slider-buttons button {
+        font-size: 12px;
+        padding: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo"><h3>Harjus Hardwares</h3></div>
+    <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+  </div>
+
+  <div class="sidebar" id="sidebar">
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">Contact</a>
+    <a href="#">About</a>
+  </div>
+
+  <div class="headhr"><h1>Welcome to Harjus Hardwares</h1></div>
+
+  <div class="slider">
+    <img id="sliderImage" src="https://via.placeholder.com/1000x400?text=Product+1" alt="Product Slider">
+    <div class="slider-buttons">
+      <button onclick="prevImage()">❮</button>
+      <button onclick="nextImage()">❯</button>
+    </div>
+  </div>
+
+  <div class="welcome">Explore our high-quality pneumatic tools and equipment.</div>
+
+  <div class="product-list">
+    <div class="container">
+      <img src="https://via.placeholder.com/300x200?text=Air+Blow+Gun" alt="Air Blow Gun">
+      <div class="titpg">Air Blow Gun</div>
+      <div class="actions">
+        <button>Buy</button>
+        <button>Details</button>
+      </div>
+    </div>
+    <div class="container">
+      <img src="https://via.placeholder.com/300x200?text=PU+Pipe" alt="PU Pipe">
+      <div class="titpg">PU Pipe</div>
+      <div class="actions">
+        <button>Buy</button>
+        <button>Details</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="notify-circle">!</div>
+
+  <div class="footer">
+    <div class="footer-container">
+      <div>
+        <h3>Harjus Hardwares</h3>
+        <p>Providing quality pneumatic solutions for your industry.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>Email: contact@harjushardwares.com</p>
+        <p>Phone: +91 12345 67890</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentImageIndex = 0;
+    const images = [
+      "https://via.placeholder.com/1000x400?text=Product+1",
+      "https://via.placeholder.com/1000x400?text=Product+2",
+      "https://via.placeholder.com/1000x400?text=Product+3"
+    ];
+
+    function nextImage() {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      document.getElementById('sliderImage').src = images[currentImageIndex];
+    }
+
+    function prevImage() {
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+      document.getElementById('sliderImage').src = images[currentImageIndex];
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>

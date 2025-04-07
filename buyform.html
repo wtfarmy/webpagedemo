@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buy Product - Harjus Hardwares</title>
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <meta charset="UTF-8">
+  <title>Product Viewer - Harjus Hardwares</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Your existing styles */
     * {
       margin: 0;
       padding: 0;
@@ -23,9 +21,89 @@
       padding: 20px;
     }
 
-    .form-box {
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
       background: white;
-      padding: 40px;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 1100px;
+      margin: auto;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .image-section {
+      flex: 1 1 300px;
+      max-width: 300px;
+      height: auto;
+    }
+
+    .main-image {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .thumbnails {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .thumbnails img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: 0.3s;
+    }
+
+    .thumbnails img.active,
+    .thumbnails img:hover {
+      border-color: #007bff;
+    }
+
+    .details-section {
+      flex: 1 1 280px;
+    }
+
+    .product-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .rating {
+      color: #f8c32b;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #28a745;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 16px;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .form-box {
+     
+      padding: 30px;
       border-radius: 10px;
       max-width: 500px;
       width: 100%;
@@ -35,7 +113,7 @@
       text-align: center;
       color: #323232;
       margin-bottom: 20px;
-      font-size: 24px;
+      font-size: 22px;
     }
 
     input,
@@ -74,9 +152,13 @@
       background-color: #c82333;
     }
 
-    @media screen and (max-width: 480px) {
-      .form-box {
-        padding: 25px;
+    @media screen and (max-width: 768px) {
+      .product-container {
+        padding: 15px;
+      }
+
+      .main-image {
+        max-height: 300px;
       }
 
       h2 {
@@ -86,58 +168,88 @@
       input,
       textarea,
       select {
-        font-size: 14px;
-        padding: 10px;
+        font-size: 15px;
       }
 
       button {
-        font-size: 14px;
-        padding: 10px;
+        font-size: 15px;
       }
     }
+
+   
   </style>
 </head>
 <body>
-  <div class="form-box">
-    <h2>Complete Your Purchase</h2>
-    <form id="buyForm" action="https://formsubmit.co/roqfatma786@gmail.com" method="POST">
-      <!-- Hidden FormSubmit options -->
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://yourdomain.com/thankyou.html">
+<br>
+<br>
+<br>
+<br>
+<br>
+  <div class="product-container">
+    <!-- Image Viewer Section -->
+    <div class="image-section">
+      <img id="main-display" class="main-image" src="WhatsApp_Image_2025-04-06_at_10.06.14_PM-removebg-preview.png" alt="Product">
+      <div class="thumbnails">
+        <img src="WhatsApp_Image_2025-04-06_at_10.06.14_PM-removebg-preview.png" class="active" onclick="showImage(this)">
+        <img src="cd141dc9-73c7-40e7-b406-23304ee268c7-removebg-preview.png" onclick="showImage(this)">
+        <img src="1b91f231-75d3-40d4-93bf-a716be37d3d1-removebg-preview.png" onclick="showImage(this)">
+      </div>
+    </div>
 
-      <!-- Form fields -->
-      <input type="text" id="product" name="Product" readonly>
-      <input type="text" id="price" name="Price" readonly>
+    <!-- Product Detail and Form Section -->
+    <div class="details-section">
+      <div class="product-title">Heavy Duty Air Blow Gun</div>
+      <div class="rating">★★★★☆ (4.2/5)</div>
+      <div class="price">₹799.00</div>
+      <div class="description">
+        This industrial-grade air blow gun is perfect for cleaning machinery, filters, and other hard-to-reach spaces. Built with durable materials and ergonomic grip for comfort. Compatible with PU pipes and standard pneumatic setups.
+      </div>
+      <div class="form-box">
+        <h2>Complete Your Purchase</h2>
+        <form id="buyForm" action="https://formsubmit.co/roqfatma786@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://yourdomain.com/thankyou.html">
 
-      <label for="category">Category</label>
-      <select id="category" name="Category" required>
-        <option value="">Select Category</option>
-        <option value="Pipe">Air Blow Gun model no. HABG-06</option>
-      </select>
+          <input type="text" id="product" name="Product" readonly>
+          <input type="text" id="price" name="Price" readonly>
 
-      <label for="quantity">Quantity</label>
-      <input type="number" id="quantity" name="Quantity" min="1" value="1" required>
+          <label for="category">Category</label>
+          <select id="category" name="Category" required>
+            <option value="">Select Category</option>
+            <option value="Pipe">Air Blow Gun model no. HABG-06</option>
+          </select>
 
-      <input type="email" id="email" name="Email" placeholder="Your Email" required>
-      <input type="tel" id="phone" name="Phone" placeholder="Your Phone Number" required>
-      <textarea name="Message" placeholder="Any Message (Optional)" rows="4"></textarea>
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" name="Quantity" min="1" value="1" required>
 
-      <!-- Razorpay Payment ID -->
-      <input type="hidden" id="payment_id" name="Payment_ID" />
+          <input type="email" id="email" name="Email" placeholder="Your Email" required>
+          <input type="tel" id="phone" name="Phone" placeholder="Your Phone Number" required>
+          <textarea name="Message" placeholder="Any Message (Optional)" rows="4"></textarea>
 
-      <button type="button" onclick="payNow()">Pay & Submit</button>
-    </form>
-    <button class="back-btn" onclick="history.back()">Go Back</button>
+          <input type="hidden" id="payment_id" name="Payment_ID" />
+
+          <button type="button" onclick="payNow()">Pay & Submit</button>
+        </form>
+        <button class="back-btn" onclick="history.back()">Go Back</button>
+      </div>
+    </div>
   </div>
 
+  <!-- Scripts -->
   <script>
-    // Load product and price from localStorage
     const product = localStorage.getItem('product') || 'Hardware Item';
-    const price = localStorage.getItem('price') || '499';
+    const price = localStorage.getItem('price') || '799';
 
     document.getElementById('product').value = product;
     document.getElementById('price').value = price;
+
+    function showImage(thumb) {
+      const mainImg = document.getElementById("main-display");
+      mainImg.src = thumb.src;
+      document.querySelectorAll('.thumbnails img').forEach(img => img.classList.remove('active'));
+      thumb.classList.add('active');
+    }
 
     function payNow() {
       const email = document.getElementById('email').value;
@@ -172,6 +284,10 @@
       const rzp = new Razorpay(options);
       rzp.open();
     }
+
+
+
   </script>
+
 </body>
 </html>

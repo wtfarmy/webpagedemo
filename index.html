@@ -1,12 +1,11 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameXD- Gaming Website</title>
-    <style>
-        * {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harjus Hardwares - Products</title>
+  <style>
+       * {
             margin: 0px;
             padding: 0px;
         }
@@ -177,175 +176,146 @@
             background: linear-gradient(to right, #ff0090, #d503ff, #6200ff, #00e5ff, #ffee00);
             padding: 1px;
         }
-        .slider { position: relative; width: 100%; overflow: hidden; margin: 20px auto; }
-        .slides { display: flex; transition: transform 0.5s ease-in-out; }
-        .slides img { width: 100%; height: 50%; border-radius: 10px; }
-        .welcome { text-align: center; margin-top: 100px; padding: 50px 20px; font-size: 24px; }
-        .welcome h1{
-            color: rgb(232, 0, 19);
-            font-family:Verdana, Geneva, Tahoma, sans-serif;
-            text-align: center;
-            font-family: 16px;
-            font-style: italic;
-            letter-spacing: 2px;
-        }
-        .welcome p{
-            color: black;
-            font-family: Verdana, Geneva, sans-serif;
-            text-align: center;
-            font-family: 14px;
-            align-items: center;
-        }
-       .products h1{
-        text-align: center;
-        align-items: center;
-        letter-spacing: 4px;
-        color: rgb(38, 38, 38);
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-        font-style: bold;
-       }
-       .products {
-      padding: 40px 20px;
-    }
-
-    .products h1 {
+    .welcome {
       text-align: center;
-      margin-bottom: 30px;
-      font-size: 32px;
-      letter-spacing: 2px;
+      font-size: 2rem;
+      margin: 1rem auto;
+      white-space: nowrap;
+      overflow: hidden;
+      color: rgb(51, 51, 51);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      width: 22ch;
+      animation: typing 3s steps(22), blink 0.5s step-end infinite alternate;
     }
 
-    .product-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+    @keyframes typing {
+      0% { width: 0; }
+      100% { width: 22ch; }
     }
 
-    .product-item {
-      background: #f5f5f5;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 20px;
-      width: 250px;
-      text-align: center;
+    @keyframes blink {
+      50% { border-color: transparent; }
     }
 
-    .product-item h3 {
-      margin: 10px 0;
-      color: rgb(47, 47, 47);
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 1rem;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+
+    .info h2 {
+      font-size: 1.5rem;
+      color: #2d2d2d;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
-    .product-item p {
-      margin: 10px 0;
-      color: rgb(30, 197, 0);
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    .price {
+      color: rgb(227, 0, 0);
+      font-weight: bold;
+      font-size: 1.2rem;
     }
-    .product-item span{
-      margin: 10px 0;
-      color: rgb(30, 30, 30);
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    .stock {
+      color: #007b00;
+      margin: 0.5rem 0;
     }
-    .product-item button {
-      background-color: #ff0033;
-      color: white;
-      padding: 10px 20px;
+
+    .options {
+      margin: 1rem 0;
+    }
+
+    .options label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    select {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .actions button {
+      padding: 0.7rem 1.5rem;
+      margin: 0.5rem;
       border: none;
+      cursor: pointer;
+      font-size: 1rem;
       border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
-    .product-item button:hover {
-      background-color: #cc002a;
+    .cart {
+      background-color: #bfbfbf;
+      color: rgb(255, 255, 255);
     }
 
-    #buyForm {
-      display: none;
+    .buy {
+      background-color: #009dff;
+      color: rgb(255, 255, 255);
+    }
+
+    @media (max-width: 600px) {
+      .welcome {
+        font-size: 1.5rem;
+      }
+
+      .info h2 {
+        font-size: 1.2rem;
+      }
+
+      .actions button {
+        width: 100%;
+        margin: 0.3rem 0;
+      }
+
+      .slider {
+        height: 200px;
+      }
+    }
+
+    /* notification bar */
+    .notify-circle {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #ffffff;
-      padding: 35px 30px;
-      border-radius: 14px;
-      border: 2px solid #ff0033;
-      z-index: 1000;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-      width: 90%;
-      max-width: 420px;
-    }
-
-    #buyForm h3 {
-      margin-top: 0;
-      margin-bottom: 20px;
-      font-size: 26px;
-      color: #ff0033;
-      text-align: center;
-    }
-
-    #buyForm input,
-    #buyForm textarea {
-      width: 100%;
-      margin-bottom: 18px;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-
-    .form-buttons {
+      top: 400px;
+      right: 20px;
+      width: 55px;
+      height: 55px;
+      background-color: red;
+      color: white;
+      font-size: 1.5rem;
+      border-radius: 50%;
       display: flex;
-      justify-content: space-between;
-    }
-
-    #buyForm button[type="submit"] {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 16px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
       cursor: pointer;
-      flex: 1;
-      margin-right: 10px;
+      z-index: 1000;
     }
+.headhr{
+  color: rgb(57, 57, 57);
+  text-align: center;
+  align-items: center;
+  letter-spacing: 3px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.titpg{
+  text-align: center;
+  align-items: center;
+  color: rgb(52, 52, 52);
+  font-family: 'Courier New', Courier, monospace;
+}
 
-    #buyForm button[type="button"] {
-      background-color: #dc3545;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-      flex: 1;
-    }
-
-    #overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-    }
-    .product-item img{
-        width: 120;
-        height: auto;
-    }
-    .img2 img{
-        width: 90px;
-        height: auto;
-    }
-    .img3 img{
-        width: 170px;
-        height: auto;
-    }
-    .footer {
+.footer {
   background-color: #111;
   color: #ccc;
   padding: 40px 20px 20px;
@@ -400,145 +370,186 @@
   font-size: 14px;
   color: #777;
 }
-.iconpg img{
-  text-align: left;
-  height: 55px;
-  width: auto;
+a{
   text-decoration: none;
-  border-radius: 50%;
-  position: fixed;
+  color: #ffffff;
 }
-      </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+.product-rating {
+      color: #f8c32b;
+      font-size: 14px;
+    }
+
+
+    
+    .product-list22 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+  
+
+</style>
 </head>
-
 <body>
-
-    <header>
-        <div class="background">
-            <nav>
-                <div class="lgimg">
+  <header>
+    <div class="background">
+        <nav>
+            <div class="lgimg">
+                <img src="WhatsApp Image 2025-04-06 at 10.15.53 PM.jpeg">
+            </div>
+            <div class="logo">
+                <h3>
+                    <b>
+                      HARJUS 
+                    </b>
+                </h3>
+            </div>
+            <div class="sidebar">
+                <br>
+                <div class="lgimg2">
                     <img src="WhatsApp Image 2025-04-06 at 10.15.53 PM.jpeg">
-                </div>
-                <div class="logo">
-                    <h3>
-                        <b>
-                          HARJUS 
-                        </b>
-                    </h3>
-                </div>
-                <div class="sidebar">
-                    <br>
-                    <div class="lgimg2">
-                        <img src="WhatsApp Image 2025-04-06 at 10.15.53 PM.jpeg">
-                        <div class="logo2">
-                            <h3>
-                                HARJUS
-                            </h3>
-                        </div>
+                    <div class="logo2">
+                        <h3>
+                            HARJUS
+                        </h3>
                     </div>
-                    <br>
-                    <br>
-                    <a href="#">
-                      <p4><b>Our Story!</b></p4>
-                  </a>
-                  <br>
-                  <br>
-                  <a href="#">
-                    <p4><b>Contact/Feedback!</b></p4>
-                </a>
+                </div>
+                <br>
+                <br>
+                <a href="#">
+                  <p4><b>Our Story!</b></p4>
+              </a>
+              <br>
+              <br>
+              <a href="#">
+                <p4><b>Contact/Feedback!</b></p4>
+            </a>
 
-                </div>
-                <div class="toggle-btn" onclick="toggleSidebar()">
-                    <!-- icon for the toggle button goes here -->
-                    &#9776;
-                </div>
-        </div>
-        </nav>
-        </header>
-      <br>
-      <br>
-      <br>
-      <br>
-      <section class="welcome">
-        <h1>Welcome to Harjus Hardwares</h1>
-        <p>Your Trusted Partner For Industrial Pneumatic Equipment</p>
-      </section>
-  <div class="iconpg">
-    <a href=""><img src="0fc84eea-7dc7-495c-887d-49e8381b8e6e.jpg" alt="" text-align="left"></a>
+            </div>
+            <div class="toggle-btn" onclick="toggleSidebar()">
+                <!-- icon for the toggle button goes here -->
+                &#9776;
+            </div>
+    </div>
+    </nav>
+    </header>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="welcome"><b>Welcome to Harjus India</b></div>
+ <br>
+ <div class="titpg">
+  <p>Your Trusted Partner For Industrial Pneumatic Equipment</p>
+ </div>
+ <br>
+ <br>
+ <br>
+ <div class="headhr">
+  <h1>
+    Our Products
+  </h1>
+ </div>
+  <!-- Product 1: Air Blow Gun -->
+   <div class="product-list22">
+  <div class="container">
+    <div class="info">
+      <h2>Air Blow Gun</h2>
+      <div class="price">₹499 <s style="color: gray">₹699</s></div>
+      <div class="product-rating">★★★★★</div>
+      <div class="stock">In Stock</div>
+      <div class="actions">
+        <button class="cart">Add to Cart</button>
+        <button class="buy"><a href="buyform.html">Buy Now</a></button>
+      </div>
+    </div>
   </div>
-      <section class="products">
-        <h1>Our Products</h1>
-        <div class="product-grid">
-          <div class="product-item">
-            <img src="WhatsApp_Image_2025-04-06_at_10.06.14_PM-removebg-preview.png" alt="p-img">
-            <h3>Air Blow Guns</h3>
-            <p><span> Price: </span>₹15,000</p>
-            <button onclick="openForm('Air Compressor', 15000)">Buy Now</button>
-          </div>
-          <div class="product-item">
-            <div class="img2">           <img src="png-transparent-solenoid-valve-control-valves-manufacturing-solenoid-valve-angle-metal-oil-burner-thumbnail-removebg-preview.png" alt="">
-            </div>
-            <h3>Pneumatic Valve</h3>
-            <p><span>Price: </span>₹3,000</p>
-            <br>
-            <button onclick="openForm1('Pneumatic Valve', 3000)">Buy Now</button>
-          </div>
-          <div class="product-item">
-            <div class="img3">
-                <img src="images-removebg-preview (1).png" alt="">
-            </div>
-            <h3>PU Pipe</h3>
-            <p><span>Price: </span>₹1,000</p>
-            <button onclick="openForm2('Hose Pipe', 1000)">Buy Now</button>
-          </div>
-        </div>
-      </section>
-   <br>
-   <br>
-    <script>
-      function toggleSidebar() {
+
+  <!-- Product 2: Pneumatic Valve -->
+  <div class="container">
+    <div class="info">
+      <h2>Pneumatic Valve</h2>
+      <div class="price">₹899 <s style="color:  gray">₹1199</s></div>
+      <div class="product-rating">★★★★★</div>
+      <div class="stock">In Stock</div>
+      <div class="actions">
+        <button class="cart">Add to Cart</button>
+        <button class="buy"><a href="buyform2.html">Buy Now</a></button>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Product 3: PU Pipe -->
+  <div class="container">
+    <div class="info">
+      <h2>PU Pipe</h2>
+      <div class="price">₹299 <s style="color: gray">₹399</s></div>
+      <div class="product-rating">★★★★★</div>
+      <div class="stock">In Stock</div>
+      <div class="actions">
+        <button class="cart">Add to Cart</button>
+        <button class="buy"><a href="buyform1.html">Buy Now</a></button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="notify-circle">
+    🔔
+  </div>
+  
+</body>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-about">
+      <h2>Harjus Hardwares</h2>
+      <p>Your one-stop shop for Industrial Pneumatic Equipment </p>
+    </div>
+
+    <div class="footer-contact">
+      <h3>Contact</h3>
+      <p>Email: support@harjushardwares.com</p>
+      <p>Phone: +91 98765 43210</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Harjus Hardwares. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+  function toggleSidebar() {
         document.querySelector('.sidebar').classList.toggle('show');
       }
-  
-      function openForm(product, price) {
-        localStorage.setItem("product", product);
-        localStorage.setItem("price", `₹${price}`);
-        window.location.href = "buyform.html";
-      }
-      function openForm1(product, price) {
-        localStorage.setItem("product", product);
-        localStorage.setItem("price", `₹${price}`);
-        window.location.href = "buyform1.html";
-      }
-      function openForm2(product, price) {
-        localStorage.setItem("product", product);
-        localStorage.setItem("price", `₹${price}`);
-        window.location.href = "buyform2.html";
-      }
-    </script>
-  </body>
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-about">
-        <h2>Harjus Hardwares</h2>
-        <p>Your one-stop shop for Industrial Pneumatic Equipment </p>
-      </div>
-  
-      <div class="footer-contact">
-        <h3>Contact</h3>
-        <p>Email: support@harjushardwares.com</p>
-        <p>Phone: +91 98765 43210</p>
-      </div>
-    </div>
-  
-    <div class="footer-bottom">
-      <p>&copy; 2025 Harjus Hardwares. All rights reserved.</p>
-    </div>
-  </footer>
-  
-  </html>
-</body>
 
+
+       // Image Slider Logic
+    let slideIndex = 0;
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+
+    function showSlide(index) {
+      slideIndex = (index + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+    function nextSlide() {
+      showSlide(slideIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(slideIndex - 1);
+    }
+
+    // Optional: Auto-slide every 5 seconds
+    setInterval(() => {
+      nextSlide();
+    }, 5000);
+</script>
 </html>
