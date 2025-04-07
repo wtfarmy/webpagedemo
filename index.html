@@ -422,6 +422,7 @@ a{
   text-decoration: none;
   color: #ffffff;
 }
+
   </style>
   
   <header>
@@ -434,8 +435,8 @@ a{
       <img id="userPic" class="profile-pic" style="display:none;" />
       <button id="loginBtn">Login</button>
       <div id="dropdown" class="menu-dropdown">
-        <a href="#">My Orders</a>
-        <a href="#">My Cart</a>
+        <a href="orders.html">My Orders</a>
+        <a href="cart.html">My Cart</a>
         <a href="#">Help / Feedback</a>
         <button id="logoutBtn">Logout</button>
       </div>
@@ -464,13 +465,13 @@ a{
    <div class="product-list22">
   <div class="container">
     <div class="info">
-      <img src="cd141dc9-73c7-40e7-b406-23304ee268c7-removebg-preview.png">
+      <img src="mainobj3.png">
       <h2>Air Blow Gun</h2>
       <div class="price">₹499 <s style="color: gray">₹699</s></div>
       <div class="product-rating">★★★★★</div>
       <div class="stock">In Stock</div>
       <div class="actions">
-        <button class="cart">Add to Cart</button>
+        <button id="addToCartBtn">Add to Cart</button>
         <a href="buyform.html"><button class="buy">Buy Now</button></a>
       </div>
     </div>
@@ -478,13 +479,13 @@ a{
    <!-- Product 3: PU Pipe -->
    <div class="container">
     <div class="info">
-      <img src="images-removebg-preview (1).png">
+      <img src="mainobj2.png">
       <h2>PU Pipe</h2>
       <div class="price">₹299 <s style="color: gray">₹399</s></div>
       <div class="product-rating">★★★★★</div>
       <div class="stock">In Stock</div>
       <div class="actions">
-        <button class="cart">Add to Cart</button>
+        <button id="addToCartBtn2">Add to Cart</button>
         <a href="buyform1.html"> <button class="buy">Buy Now</button></a>
       </div>
     </div>
@@ -564,7 +565,93 @@ a{
         dropdown.style.display = "none";
       }
     });
+
+    
+  document.getElementById("addToCartBtn").addEventListener("click", function () {
+    const product = {
+      id: "air-blow-gun",
+      name: "Air Blow Gun",
+      price: 499,
+      image: "mainobj3.png", // Update with actual image path
+      quantity: 1
+    };
+
+   
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let existingItem = cart.find(item => item.id === product.id);
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push(product);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Item added to cart!");
+  });
+ 
+  document.getElementById("addToCartBtn2").addEventListener("click", function () {
+    const product = {
+      id: "pu-pipes",
+      name: "PU Pipes",
+      price: 299,
+      image: "mainobj2.png", // Update with actual image path
+      quantity: 1
+    };
+
+   
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let existingItem = cart.find(item => item.id === product.id);
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push(product);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Item added to cart!");
+  });
+</script>
   </script>
 
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
 </html>

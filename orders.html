@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders - Harjus India</title>
+  <style>
+    :root {
+      --primary-color: #d32f2f;
+      --bg-color: #f4f4f4;
+      --text-color: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 1rem;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .orders {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .order-card {
+      background: #fff;
+      padding: 1rem;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      font-size: 1rem;
+    }
+
+    .order-card strong {
+      color: var(--primary-color);
+    }
+
+    .empty-message {
+      text-align: center;
+      color: #777;
+      font-size: 1.1rem;
+      margin-top: 2rem;
+    }
+
+    .emoji {
+      font-size: 2rem;
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 0.8rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .order-card {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 1.3rem;
+      }
+      .order-card {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Orders</h1>
+  <div class="orders" id="ordersContainer"></div>
+
+  <script>
+    // Simulate order data (for now using localStorage or default empty)
+    const orders = JSON.parse(localStorage.getItem('myOrders')) || [];
+
+    const container = document.getElementById("ordersContainer");
+
+    if (orders.length === 0) {
+      container.innerHTML = `
+        <div class="empty-message">
+          No orders yet <span class="emoji">🛍️</span>
+        </div>`;
+    } else {
+      orders.forEach(order => {
+        const div = document.createElement("div");
+        div.className = "order-card";
+        div.innerHTML = `
+          <strong>Product:</strong> ${order.product}<br>
+          <strong>Date:</strong> ${order.date}`;
+        container.appendChild(div);
+      });
+    }
+  </script>
+
+</body>
+</html>

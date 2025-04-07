@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Cart - Harjus India</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #d50000;
+      color: #fff;
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .cart-container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .cart-title {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      color: #222;
+      border-bottom: 2px solid #d50000;
+      padding-bottom: 10px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: auto;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+
+    .cart-info {
+      flex: 1;
+    }
+
+    .cart-info h4 {
+      margin-bottom: 5px;
+    }
+
+    .price, .qty {
+      font-size: 0.95rem;
+      margin-top: 3px;
+    }
+
+    .remove-btn {
+      background: #d50000;
+      color: #fff;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 15px;
+    }
+
+    .remove-btn:hover {
+      background: #b00000;
+    }
+
+    .empty-msg {
+      text-align: center;
+      padding: 50px;
+      font-size: 1.2rem;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cart-item img {
+        margin-bottom: 10px;
+      }
+
+      .cart-info {
+        width: 100%;
+      }
+
+      .remove-btn {
+        margin: 10px 0 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>Harjus India - My Cart</header>
+
+  <div class="cart-container">
+    <div id="cartContent" class="cart-title">Loading cart...</div>
+  </div>
+
+  <script>
+    function loadCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartContent = document.getElementById("cartContent");
+
+      if (cart.length === 0) {
+        cartContent.innerHTML = "<div class='empty-msg'>Your cart is empty.</div>";
+        return;
+      }
+
+      cartContent.innerHTML = "<div class='cart-title'>Items in Your Cart</div>";
+
+      cart.forEach((item, index) => {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "cart-item";
+        itemDiv.innerHTML = `
+          <img src="${item.image || ''}" alt="${item.name}">
+          <div class="cart-info">
+            <h4>${item.name}</h4>
+            <div class="price">Price: ₹${item.price}</div>
+            <div class="qty">Quantity: ${item.quantity}</div>
+          </div>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        `;
+        cartContent.appendChild(itemDiv);
+      });
+    }
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      loadCart(); // reload cart UI
+    }
+
+    window.onload = loadCart;
+  </script>
+
+</body>
+</html>
