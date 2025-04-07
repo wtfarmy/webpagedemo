@@ -103,7 +103,7 @@
   
     button {
       background: var(--primary);
-      color: white;
+      color: rgb(5, 5, 5);
       border: none;
       border-radius: 6px;
       padding: 6px 14px;
@@ -362,13 +362,65 @@ a{
       z-index: 1000;
     }
 
-    .login-button {
-  background-color: white;
-  color: red;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  padding: 6px 12px;
+    
+.footer {
+  background-color: #111;
+  color: #ccc;
+  padding: 40px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer h2, .footer h3 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.footer-about,
+.footer-links,
+.footer-contact {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #00ffc8;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #777;
+}
+a{
+  text-decoration: none;
+  color: #ffffff;
 }
   </style>
   
@@ -380,7 +432,7 @@ a{
       <div class="nav-right">
       <span id="userEmail"></span>
       <img id="userPic" class="profile-pic" style="display:none;" />
-      <button class="login-button">Login</button>
+      <button id="loginBtn">Login</button>
       <div id="dropdown" class="menu-dropdown">
         <a href="#">My Orders</a>
         <a href="#">My Cart</a>
@@ -441,7 +493,24 @@ a{
   <div class="notify-circle">
     🔔
   </div>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h2>Harjus Hardwares</h2>
+        <p>Your one-stop shop for Industrial Pneumatic Equipment </p>
+      </div>
   
+      <div class="footer-contact">
+        <h3>Contact</h3>
+        <p>Email: support@harjushardwares.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+  
+    <div class="footer-bottom">
+      <p>&copy; 2025 Harjus Hardwares. All rights reserved.</p>
+    </div>
+  </footer>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
