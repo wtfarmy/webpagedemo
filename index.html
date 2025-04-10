@@ -421,15 +421,71 @@ a{
 a{
   text-decoration: none;
   color: #ffffff;
+}.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 2px;
 }
+
+.bar-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 30px;
+}
+.bar {
+  width: 8px;
+  height: 8px;
+  background-color: rgb(255, 255, 255);
+  opacity: 0;
+  animation: barAppear 0.4s forwards;
+  animation-delay: 0.2s; /* delay all bars slightly */
+}
+
+.brand-name {
+  font-size: 10px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  opacity: 0;
+  animation: textFadeIn 0.6s forwards;
+  animation-delay: 0.7s; /* after bars */
+  letter-spacing: 2px;
+}
+
+@keyframes barAppear {
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes textFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
 
   </style>
   
   <header>
-    <div class="brand">
-        <img src="WhatsApp Image 2025-04-06 at 10.15.53 PM.jpeg" alt="Harjus Logo" class="brand-logo">
-        <span class="brand-text">Harjus <span class="brand-sub">India</span></span>
-      </div> 
+    <div class="logo-container">
+        <div class="bar-group">
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      
+        <h1 class="brand-name">HARJUS</h1>
+      
+        <div class="bar-group">
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+      
       <div class="nav-right">
       <span id="userEmail"></span>
       <img id="userPic" class="profile-pic" style="display:none;" />
