@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GameXD Membership Approval</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      max-width: 500px;
+      margin: auto;
+    }
+    input, select, button {
+      display: block;
+      margin: 15px 0;
+      padding: 10px;
+      width: 100%;
+    }
+    code {
+      background: #eee;
+      padding: 10px;
+      display: block;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <h2>Generate Approval Link</h2>
+  <input type="email" id="userEmail" placeholder="User Email" required>
+  <select id="membershipType">
+    <option value="RAGE">RAGE</option>
+    <option value="UCHIHA">UCHIHA</option>
+    <option value="AKATSUKI">AKATSUKI</option>
+  </select>
+  <button onclick="generateLink()">Generate Link</button>
+
+  <h3>Approval Link:</h3>
+  <code id="linkOutput">Your link will appear here...</code>
+
+  
+   <script>
+  function generateLink() {
+    const email = document.getElementById("userEmail").value.trim();
+    const type = document.getElementById("membershipType").value;
+
+    if (!email || !type) {
+      alert("Please enter both email and membership type.");
+      return;
+    }
+
+    // Replace with your actual hosted site URL or test locally as joined.html
+    const link = `joined.html?email=${encodeURIComponent(email)}&type=${encodeURIComponent(type)}`;
+    document.getElementById("linkOutput").textContent = link;
+  }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Join Membership - GameXD</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #0c0c0c;
+      padding: 30px;
+      margin: 0;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      color: #363636;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    form {
+      background: #ffffff;
+      color: #333;
+      padding: 25px 30px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 8px rgba(98, 0, 234, 0.3);
+    }
+
+    button {
+      background: linear-gradient(to bottom right, #ff2347, #f948ff);
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #3700b3;
+    }
+
+    @media (max-width: 480px) {
+      form {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>Complete Your GameXD Membership</h2>
+
+  <form action="https://formsubmit.co/roqfatma786@gmail.com" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" id="email" placeholder="Your Email" required>
+    
+    <select name="membership" required>
+      <option value="">Select Membership</option>
+      <option value="RAGE">RAGE (₹99)</option>
+      <option value="UCHIHA">UCHIHA (₹120)</option>
+      <option value="AKATSUKI">AKATSUKI (₹140)</option>
+    </select>
+
+    <input type="hidden" name="_autoresponse" value="Thank you for your membership request. GameXD will contact you after approval.">
+    <input type="hidden" name="_next" value="thankyou.html">
+
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    document.getElementById('membershipTypeInput').value = localStorage.getItem('membershipType');
+    function saveAndRedirect() {
+      localStorage.setItem('joinedDate', new Date().toISOString());
+      setTimeout(() => {
+        window.location.href = 'joined.html';
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
