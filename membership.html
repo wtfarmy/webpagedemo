@@ -235,7 +235,37 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 margin-bottom: 20px;
 color: #292929;
 }
+  #loginBtn {
+  color: white;
+  background: linear-gradient(to right, #ff003c, #8c00ff);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+#logoutBtn {
+  color: rgb(33, 33, 33);
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: end;
+  padding: 4px 8px;
+  cursor: pointer;
+}
 
+#userEmail {
+      display: none; /* hidden as requested */
+    }
+  
+    .profile-pic {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -258,18 +288,19 @@ color: #292929;
   }
 </script>
 <body>
-
   <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
-
-  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <div class="close-btn" onclick="toggleSidebar()"></div>
-    <a href="#" onclick="loginWithGoogle()"><b>Login/Sign In</b></a>
-    <a href="#"><b>Events</b></a>
-    <a href="homepage.html"><b>Home</b></a>
-    <a href="#"><b>Merchandise</b></a>
-    <a href="#"><b>Feedback</b></a>
-    <a href="#" onclick="logout()">Logout</a>
+    <br>
+    <br>
+    <span id="userEmail"></span>
+    <img id="userPic" class="profile-pic" style="display:none;" />
+    <button id="loginBtn">Login</button>
+    <a href="#" onclick="toggleSidebar()"><b>Events</b></a>
+    <a href="homepage.html" onclick="toggleSidebar()"><b>Home</b></a>
+    <a href="#" onclick="toggleSidebar()"><b>Merchandise</b></a>
+    <a href="#" onclick="toggleSidebar()"><b>Creators</b></a>
+    <br>
+    <button id="logoutBtn" onclick="logout()" >Logout</button>
   </div>
 
   <!-- Header -->
@@ -317,15 +348,74 @@ color: #292929;
       </ul>
       <button class="btn" onclick="join('AKATSUKI')">JOIN</button>
     </div>
-
+    a@ZSCD
   </div>
 </div>
 
 <script>
-  function join(type) {
-    localStorage.setItem('membershipType', type);
-    window.location.href = 'form.html';
-  } 
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.body.classList.toggle('sidebar-open');
+  }
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBnDGSg_K60_Tp7w13c-O8Jb9hLkErSCY8",
+  authDomain: "gamexd-110.firebaseapp.com",
+  projectId: "gamexd-110",
+  storageBucket: "gamexd-110.firebasestorage.app",
+  messagingSenderId: "501792431454",
+  appId: "1:501792431454:web:10024d189316ef9e2303cf"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  const loginBtn = document.getElementById("loginBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const userEmail = document.getElementById("userEmail");
+  const userPic = document.getElementById("userPic");
+  const dropdown = document.getElementById("dropdown");
+
+  loginBtn.addEventListener("click", () => {
+    signInWithPopup(auth, provider)
+      .then(result => console.log("Logged in as", result.user.email))
+      .catch(err => console.error(err));
+  });
+
+  logoutBtn.addEventListener("click", () => {
+    signOut(auth).then(() => location.reload());
+  });
+
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      userEmail.textContent = user.email;
+      userPic.src = user.photoURL;
+      userPic.style.display = "block";
+      loginBtn.style.display = "none";
+    } else {
+      userEmail.textContent = "";
+      loginBtn.style.display = "inline-block";
+      userPic.style.display = "none";
+      dropdown.style.display = "none";
+    }
+  });
+
+  userPic.addEventListener("click", () => {
+    dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("#userPic") && !e.target.closest("#dropdown")) {
+      dropdown.style.display = "none";
+    }
+  });
+
 </script>
 
 </body>
