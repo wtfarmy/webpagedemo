@@ -1,165 +1,1006 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Harjus India</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #ffffff;
-    }
-  
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
-  
+
     body {
-      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      color: #333;
     }
-  
+
     header {
-      background: #e20000;
-      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to right, #d0003b, #ff001e);
+      padding: 10px 20px;
+      position: relative;
+    }
+
+    .top-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: nowrap;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      width: 100%;
     }
-  
-    .brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 
-.brand-logo {
-  height: 32px;
-  width: auto;
-}
+    .logo {
+      display: flex;
+     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      align-items: center;
+      font-style: bold;
+      font-weight: bolder;
+    }
 
-.brand-text {
-  font-weight: 600;
-  font-size: 1.2rem;
-  color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
+    .logo img {
+      width: 35px;
+      margin-right: 10px;
+    }
 
-.brand-sub {
-  color: rgb(255, 255, 255);
-  margin-left: 4px;
-}
-    .nav-right {
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-style: bolder;
+      font-weight: bolder;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      background: linear-gradient(90deg, #ffffff, #ffffff, #ffffff, #ff0000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shimmer 5s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 0% center;
+      }
+
+      100% {
+        background-position: 200% center;
+      }
+    }
+
+    .sidebar-toggle {
+      font-size: 1.5rem;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .search-container {
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-bar {
+      display: flex;
+      width: 100%;
+      max-width: 600px;
+      background: white;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .search-bar button {
+      background: orange;
+      border: none;
+      padding: 0 15px;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .top-row {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .search-container {
+        margin-top: 10px;
+        padding: 0 10px;
+      }
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 30px 20px;
+      background-color: #ffffff;
+    }
+
+    .hero-text {
+      flex: 1;
+      padding: 10px;
+    }
+
+    .hero-text h4 {
+      color: #888;
+      font-size: 16px;
+    }
+
+    .hero-text h1 {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+
+    .hero-text p {
+      margin: 15px 0;
+      color: #555;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-buttons button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .discover-btn {
+      background-color: #111;
+      color: white;
+    }
+
+    .cart-btn {
+      background-color: white;
+      border: 1px solid #111;
+      color: #111;
+    }
+
+    .hero-image {
+      position: relative;
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      overflow: hidden;
+      /* Ensures images don't overflow */
+    }
+
+    .slider {
+      position: relative;
+      max-width: 100%;
+      /* Full width of the parent container */
+      height: auto;
+    }
+
+    .slide {
+      display: none;
+      /* Hide slides initially */
+      width: 100%;
+      height: auto;
+    }
+
+    .slide img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .price-tag {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #f03;
+      color: white;
+      padding: 10px;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      font-size: 12px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      position: relative;
+      justify-content: center;
+      flex-direction: column;
+      line-height: 1.2;
+      opacity: 0;
+      /* Initially hidden */
+      animation: fadeIn 1s ease forwards;
+      /* Fade-in animation */
     }
-  
+
+    /* Keyframes for the fade-in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .price-tag {
+        width: 60px;
+        height: 60px;
+        font-size: 10px;
+        top: 10px;
+        right: 10px;
+      }
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 5px;
+      background-color: #fff;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .features div {
+      flex: 1;
+      margin: 0 5px;
+    }
+
+    .features i {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .features .highlight {
+      background-color: rgb(216, 1, 48);
+      color: #fff;
+      border-radius: 8px;
+      padding: 10px 5px;
+    }
+
+    .product-card {
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-card h3 {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .product-card p {
+      color: #ff3131;
+    }
+
+    .product-card button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #d90429;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      header {
+        justify-content: space-between;
+      }
+
+      .hero-text h1 {
+        font-size: 28px;
+      }
+
+      .hero-buttons button {
+        width: 100%;
+        padding: 10px;
+      }
+
+
+
+
+      .features {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .features div {
+        flex: 1 0 33%;
+        padding: 5px 0;
+      }
+    }
+
+
+    #loginBtn {
+      color: white;
+      background: linear-gradient(to right, #ff003c, #8c00ff);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+
+    #logoutBtn {
+      color: rgb(33, 33, 33);
+      background-color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: end;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+
     #userEmail {
-      display: none; /* hidden as requested */
+      display: none;
     }
-  
+
     .profile-pic {
-      width: 34px;
-      height: 34px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       border: 2px solid var(--primary);
       cursor: pointer;
     }
-  
-    .menu-dropdown {
-      position: absolute;
-      right: 0;
-      top: 45px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      display: none;
-      flex-direction: column;
-      padding: 8px 0;
-      width: 160px;
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .characters img {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .sidebar a i {
+      margin-right: 8px;
+    }
+
+    .sidebar {
       z-index: 1000;
     }
-  
-    .menu-dropdown a, .menu-dropdown button {
-      padding: 10px 14px;
-      text-align: left;
-      border: none;
-      background: none;
-      font-size: 0.95rem;
-      cursor: pointer;
-      color: #444;
-      text-decoration: none;
-      width: 100%;
+
+    .sidebar {
+
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 200px;
+      height: 100%;
+      background: linear-gradient(#090909, #010101d2, #010101cb, #00000084, #ff002f72);
+      padding: 10px;
+      transition: all 0.3s ease;
     }
-  
-    button {
-      background: var(--primary);
-      color: rgb(5, 5, 5);
+
+
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .sidebar .close-btn {
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      text-align: right;
+    }
+
+    .sidebar a {
+      display: block;
+      background: linear-gradient(90deg, #e4d2d2, #858282, rgb(255, 255, 254), rgb(181, 114, 114));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      font-weight: 900;
+      font-family: fantasy;
+      animation: shimmer 5s linear infinite;
+      text-decoration: none;
+      padding: 0.8rem 0;
+    }
+
+    .sidebar a:hover {
+      background-color: #ff0000;
+    }
+
+
+
+    .overlay.show {
+      display: block;
+    }
+
+    /* Hamburger lines color fix */
+    .hamburger span {
+      background: #fff;
+    }
+
+    .netflix-title {
+      font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+      font-size: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #e50926;
+      padding: 20px;
+      margin: 0;
+      display: inline-block;
+      border-left: 8px solid #e50914;
+      animation: fadeinout 10s ease-in infinite;
+    }
+
+    /* Optional entrance animation */
+    @keyframes fadeInZoom {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .story-section {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #111;
+      color: white;
+      font-family: 'Courier New', monospace;
+      border-left: 5px solid #e50914;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    }
+
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid #e50914;
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: .15em;
+      animation: typing 3s steps(30, end), blink-caret .75s step-end infinite;
+      font-size: 2.2rem;
+      color: #e50914;
+      font-weight: bold;
+    }
+
+    /* Typewriter animation */
+    @keyframes typing {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
+    }
+
+    @keyframes blink-caret {
+
+      from,
+      to {
+        border-color: transparent
+      }
+
+      50% {
+        border-color: #e50914
+      }
+    }
+
+    .story-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    #readMoreBtn {
+      margin-top: 15px;
+      background-color: #e50914;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product-section {
+      padding: 20px;
+    }
+
+    .product-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 15px;
+      padding-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .product-card {
+      flex: 0 0 250px;
+      scroll-snap-align: start;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1.03);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 10px;
+    }
+
+
+
+    .product-info h3 {
+      margin: 5px 0;
+      font-size: 18px;
+    }
+
+    .product-rating {
+      color: #ffa500;
+      font-size: 14px;
+    }
+
+    .last-sold {
+      font-size: 12px;
+      color: gray;
+    }
+
+    .product-info button {
+      margin-top: 10px;
+      padding: 6px 10px;
+      background: #ff002b;
+      color: white;
       border: none;
       border-radius: 6px;
-      padding: 6px 14px;
-      font-size: 0.9rem;
       cursor: pointer;
     }
-  
-    @media (max-width: 480px) {
-      .brand {
-        font-size: 1.1rem;
+
+    @media (min-width: 768px) {
+      .product-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        overflow-x: unset;
       }
-      button {
-        padding: 4px 10px;
-        font-size: 0.85rem;
+
+      .product-card {
+        flex: none;
       }
     }
 
-    .welcome {
+    #readMoreBtn:hover {
+      background-color: #b0060f;
+    }
+
+    .headlinehead {
+      background: linear-gradient(to right, #ff0073, #cc0000);
+      color: white;
       text-align: center;
-      font-size: 2rem;
-      margin: 1rem auto;
-      white-space: nowrap;
-      overflow: hidden;
-      color: rgb(51, 51, 51);
+      align-items: center;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
-      width: 22ch;
-      animation: typing 3s steps(22), blink 0.5s step-end infinite alternate;
+      font-weight: bold;
+      padding: 18px;
+    }
+       
+.footer {
+  background-color: #111;
+  color: #ccc;
+  padding: 40px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer h2, .footer h3 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.footer-about,
+.footer-links,
+.footer-contact {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #00ffc8;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #777;
+}
+    .badgetexticon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1.4px solid rgba(0, 0, 0, 0.866);
+      border-radius: 999px;
+      background-color: rgba(255, 0, 55, 0.66);
+      color: rgb(255, 255, 255);
+      font-size: 14px;
+      font-weight: 500;
     }
 
-    @keyframes typing {
-      0% { width: 0; }
-      100% { width: 22ch; }
+    .badgtext {
+      font-size: 16px;
     }
 
-    @keyframes blink {
-      50% { border-color: transparent; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
     }
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 1rem;
+    .badgetexticon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1.4px solid rgba(0, 0, 0, 0.866);
+      border-radius: 999px;
+      background-color: rgba(255, 0, 55, 0.66);
+      color: rgb(255, 255, 255);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .badgtext {
+      font-size: 16px;
+    }
+
+    .game-slider-container {
+      text-align: center;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+    }
+
+    .game-slider {
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      gap: 1rem;
+      scroll-snap-type: x mandatory;
+      padding: 1rem 0;
+      -webkit-overflow-scrolling: touch;
+      scroll-padding: 0 1rem;
+    }
+
+    .game-card22 {
+      flex: 0 0 auto;
+      width: 240px;
+      height: 320px;
+      background: #222;
+      border-radius: 12px;
+      overflow: hidden;
+      scroll-snap-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .game-slider {
+        padding: 0 1rem;
+        justify-content: flex-start;
+      }
+
+      .game-card22 {
+        width: 180px;
+        height: 240px;
+        scroll-snap-align: center;
+      }
+    }
+
+    .game-card22 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 5px;
+      background-color: #fff;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .features div {
+      flex: 1;
+      margin: 0 5px;
+    }
+
+    .features i {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .features .highlight {
+      background-color: rgb(216, 1, 48);
+      color: #fff;
+      border-radius: 8px;
+      padding: 10px 5px;
+    }
+
+    .game-card22:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .iconbadge22 {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: linear-gradient(to right, #ff0084, #ff0015);
+      color: #ffffff;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+
+    @media (max-width: 768px) {
+      .game-card22 {
+        width: 180px;
+        height: 240px;
+      }
+    }
+
+
+    .logo {
+      display: flex;
+      align-items: center;
+      background: linear-gradient(90deg, #ff005d, #ff006a, #2f00ff, #ff29b1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      font-weight: 900;
+      font-family: fantasy;
+      animation: shimmer 5s linear infinite;
+    }
+
+    .logo img {
+      height: 35px;
+      margin-right: 0.5rem;
+    }
+
+    @keyframes floatDragon {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+
+    .hero {
+      align-items: center;
+      padding: 30px 20px;
+    }
+
+    .hero-text {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .hero-text h4 {
+      color: #888;
+      font-size: 16px;
+    }
+
+    .hero-text h1 {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+
+    .hero-text p {
+      margin: 15px 0;
+      color: #555;
+    }
+    body {
+      font-weight: bold;
+      /* Make all text bold */
+    }
+    .products {
+      padding: 10px;
+    }
+    .products h2 {
+      margin-bottom: 10px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+    .product {
       background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .product .title {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+    .product .price {
+      font-weight: bold;
+      color: #b12704;
+    }
+    .product button {
+      margin-top: 8px;
+      background-color: #ffd814;
+      border: 1px solid #fcd200;
+      padding: 6px 10px;
+      font-size: 13px;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
+ .slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  margin: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
 
-    @keyframes slide {
-      0% { transform: translateX(0); }
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0); }
+.slider {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  width: 100%;
+}
+
+.slider img {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.left { left: 10px; }
+.right { right: 10px; }
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 8px;
+    font-size: 18px;
+  }
+}
+
+.product-rating {
+      color: #f8c32b;
+      font-size: 14px;
     }
 
-    .info h2 {
+ .info h2 {
       font-size: 1.5rem;
       color: #2d2d2d;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -199,122 +1040,6 @@
       border-radius: 5px;
     }
 
-    .cart {
-      background-color: #bfbfbf;
-      color: rgb(255, 255, 255);
-    }
-
-    .buy {
-      background-color: #dd0000;
-      color: rgb(255, 255, 255);
-    }
-
-    @media (max-width: 600px) {
-      .welcome {
-        font-size: 1.5rem;
-      }
-
-      .info h2 {
-        font-size: 1.2rem;
-      }
-
-      .actions button {
-        width: 100%;
-        margin: 0.3rem 0;
-      }
-
-      .slider {
-        height: 200px;
-      }
-    }
-
-    /* notification bar */
-    .notify-circle {
-      position: fixed;
-      top: 400px;
-      right: 20px;
-      width: 55px;
-      height: 55px;
-      background-color: red;
-      color: white;
-      font-size: 1.5rem;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      cursor: pointer;
-      z-index: 1000;
-    }
-.headhr{
-  color: rgb(57, 57, 57);
-  text-align: center;
-  align-items: center;
-  letter-spacing: 3px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.titpg{
-  text-align: center;
-  align-items: center;
-  color: rgb(52, 52, 52);
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.footer {
-  background-color: #111;
-  color: #ccc;
-  padding: 40px 20px 20px;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 30px;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.footer h2, .footer h3 {
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-.footer-about,
-.footer-links,
-.footer-contact {
-  flex: 1;
-  min-width: 200px;
-}
-
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-links ul li {
-  margin-bottom: 8px;
-}
-
-.footer-links ul li a {
-  text-decoration: none;
-  color: #ccc;
-  transition: color 0.3s ease;
-}
-
-.footer-links ul li a:hover {
-  color: #00ffc8;
-}
-
-.footer-bottom {
-  text-align: center;
-  padding-top: 20px;
-  border-top: 1px solid #333;
-  margin-top: 20px;
-  font-size: 14px;
-  color: #777;
-}
 a{
   text-decoration: none;
   color: #ffffff;
@@ -327,6 +1052,15 @@ a{
 
 
     
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 1rem;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
     .product-list22 {
       display: flex;
       flex-wrap: wrap;
@@ -341,183 +1075,98 @@ a{
   align-items: center;
   height: auto;
 }
-
-
-    /* notification bar */
-    .notify-circle {
-      position: fixed;
-      top: 400px;
-      right: 20px;
-      width: 55px;
-      height: 55px;
-      background-color: red;
-      color: white;
-      font-size: 1.5rem;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      cursor: pointer;
-      z-index: 1000;
+    .greycart {
+      background-color: #5a5a5a;
+      color: rgb(255, 255, 255);
     }
 
+    .buy {
+      background-color: #dd0000;
+      color: rgb(255, 255, 255);
+    }
     
-.footer {
-  background-color: #111;
-  color: #ccc;
-  padding: 40px 20px 20px;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 30px;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.footer h2, .footer h3 {
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-.footer-about,
-.footer-links,
-.footer-contact {
-  flex: 1;
-  min-width: 200px;
-}
-
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-links ul li {
-  margin-bottom: 8px;
-}
-
-.footer-links ul li a {
-  text-decoration: none;
-  color: #ccc;
-  transition: color 0.3s ease;
-}
-
-.footer-links ul li a:hover {
-  color: #00ffc8;
-}
-
-.footer-bottom {
-  text-align: center;
-  padding-top: 20px;
-  border-top: 1px solid #333;
-  margin-top: 20px;
-  font-size: 14px;
-  color: #777;
-}
-a{
-  text-decoration: none;
-  color: #ffffff;
-}.logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 2px;
-}
-
-.bar-group {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 30px;
-}
-.bar {
-  width: 8px;
-  height: 8px;
-  background-color: rgb(255, 255, 255);
-  opacity: 0;
-  animation: barAppear 0.4s forwards;
-  animation-delay: 0.2s; /* delay all bars slightly */
-}
-
-.brand-name {
-  font-size: 10px;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  opacity: 0;
-  animation: textFadeIn 0.6s forwards;
-  animation-delay: 0.7s; /* after bars */
-  letter-spacing: 2px;
-}
-
-@keyframes barAppear {
-  to {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-}
-
-@keyframes textFadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-
-  </style>
+    .product-list22 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
   
+  </style><link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+  <div class="sidebar" id="sidebar">
+    <br>
+    <span id="userEmail"></span>
+    <img id="userPic" class="profile-pic" style="display:none;" />
+    <button id="loginBtn">Login</button>
+    <a href="product.html" onclick="toggleSidebar()"><i class="fas fa-box"></i> <b>Products</b></a>
+    <a href="membership.html" onclick="toggleSidebar()"><i class="fas fa-book"></i> <b>Our Story</b></a>
+    <a href="#" onclick="toggleSidebar()"><i class="fas fa-user"></i> <b>Contact!</b></a>
+    <br>
+    <button id="logoutBtn" onclick="logout()">Logout</button>
+  </div>
+
   <header>
-    <div class="logo-container">
-        <div class="bar-group">
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-      
-        <h1 class="brand-name">HARJUS</h1>
-      
-        <div class="bar-group">
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
+    <div class="top-row">
+      <div class="logo">
+        <img src="harjus.jpg" alt="Logo">
+        <span><b>Harjus India<sup>™</sup></b></span>
       </div>
-      
-      <div class="nav-right">
-      <span id="userEmail"></span>
-      <img id="userPic" class="profile-pic" style="display:none;" />
-      <button id="loginBtn">Login</button>
-      <div id="dropdown" class="menu-dropdown">
-        <a href="orders.html">My Orders</a>
-        <a href="cart.html">My Cart</a>
-        <a href="#">Help / Feedback</a>
-        <button id="logoutBtn">Logout</button>
+      <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="search-container">
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search products like Pu Pipes, Air Blow Guns.." />
+        <button onclick="handleSearch()">
+          <i class="fas fa-search"></i>
+        </button>
       </div>
     </div>
   </header>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <div class="welcome"><b>Welcome to Harjus India</b></div>
- <br>
- <div class="titpg">
-  <p>Your Trusted Partner For Industrial Pneumatic Equipment</p>
- </div>
- <br>
- <br>
- <br>
- <div class="headhr">
-  <h1>
-    Our Products
-  </h1>
- </div>
-  <!-- Product 1: Air Blow Gun -->
+  <div class="game-slider-container">
+    <div class="badgetexticon">
+      <span class="badgtext">✨</span>
+      Most Popular
+    </div>
+    <br>
+    <br>
+    <div class="game-slider">
+      <div class="game-card22">
+        <span class="iconbadge22">Harjus Official</span>
+        <img src="Air BLOW GUN.png" onclick="window.location.href='product.html'"/>
+      </div>
+      <div class="game-card22">
+        <span class="iconbadge22">Harjus Official</span>
+        <img src="Air BLOW GUN (1).png" onclick="window.location.href='product.html'" />
+      </div>
+      <div class="game-card22">
+        <span class="iconbadge22">Harjus Official</span>
+        <img src="Air BLOW GUN (2).png"  onclick="window.location.href='product.html'"/>
+      </div>
+    </div>
+    <br>
+    <br>
+    <section class="features">
+      <div><i class="fas fa-lock"></i>SECURE PAYMENTS</div>
+      <div class="highlight"><i class="fas fa-gem"></i>PREMIUM QUALITY</div>
+    </section>
+
+
    <div class="product-list22">
   <div class="container">
     <div class="info">
@@ -527,7 +1176,7 @@ a{
       <div class="product-rating">★★★★★</div>
       <div class="stock">In Stock</div>
       <div class="actions">
-        <button id="addToCartBtn">Add to Cart</button>
+        <a href="buyform1.html"> <button class="greycart">View</button></a>
         <a href="buyform.html"><button class="buy">Buy Now</button></a>
       </div>
     </div>
@@ -537,20 +1186,55 @@ a{
     <div class="info">
       <img src="mainobj2.png">
       <h2>PU Pipe</h2>
-      <div class="price">₹0 <s style="color: gray">₹399</s></div>
+      <div class="price">₹129 <s style="color: gray">₹399</s></div>
       <div class="product-rating">★★★★★</div>
       <div class="stock">In Stock</div>
       <div class="actions">
-        <button id="addToCartBtn2">Add to Cart</button>
+       <a href="buyform1.html"> <button class="greycart">View</button></a>
+        <a href="buyform1.html"> <button class="buy">Buy Now</button></a>
+      </div>
+    </div>
+  </div>
+   <div class="container">
+    <div class="info">
+      <img src="mainobj2.png">
+      <h2>HC Motor</h2>
+      <div class="price">₹199 <s style="color: gray">₹399</s></div>
+      <div class="product-rating">★★★★★</div>
+      <div class="stock">In Stock</div>
+      <div class="actions">
+       <a href="buyform1.html"> <button class="greycart">View</button></a>
         <a href="buyform1.html"> <button class="buy">Buy Now</button></a>
       </div>
     </div>
   </div>
   </div>
-  <div class="notify-circle">
-    🔔
-  </div>
-  <footer class="footer">
+
+    <div class="story-section">
+      <h2 class="netflix-title">Story of Harjus</h2>
+      <p id="storyText" class="story-text">
+        <!-- First 100 words shown initially -->
+        Harjus was not just a name in the hardware business—he was a visionary. From the dusty alleys of a small
+        industrial town, he built an empire with tools, pipes, and pneumatic power. His dream was forged not just in
+        steel, but in resilience. Every screw he sold, every valve he engineered, told a story of purpose. Through
+        challenges and competitors, Harjus thrived with honesty, precision, and a relentless drive to empower
+        industries.
+        <span id="dots">...</span>
+        <span id="moreText" style="display: none;">
+          As time passed, his company didn’t just grow—it inspired. Young entrepreneurs looked up to Harjus, not because
+          he made millions, but because he made a difference. His legacy wasn't in the machines—but in the people he
+          helped build along the way. And this is just the beginning.
+        </span>
+      </p>
+      <button onclick="toggleReadMore()" id="readMoreBtn">Read More</button>
+    </div>
+
+    <br>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000 });</script>
+    <br>
+     <footer class="footer">
     <div class="footer-container">
       <div class="footer-about">
         <h2>Harjus Hardwares</h2>
@@ -568,146 +1252,140 @@ a{
       <p>&copy; 2025 Harjus Hardwares. All rights reserved.</p>
     </div>
   </footer>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDpGY_-T5qabHHlDQJ-BCzhMmXY2b2jiSQ",
-      authDomain: "harjus-b4add.firebaseapp.com",
-      projectId: "harjus-b4add",
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-
-    const loginBtn = document.getElementById("loginBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const userEmail = document.getElementById("userEmail");
-    const userPic = document.getElementById("userPic");
-    const dropdown = document.getElementById("dropdown");
-
-    loginBtn.addEventListener("click", () => {
-      signInWithPopup(auth, provider)
-        .then(result => console.log("Logged in as", result.user.email))
-        .catch(err => console.error(err));
-    });
-
-    logoutBtn.addEventListener("click", () => {
-      signOut(auth).then(() => location.reload());
-    });
-
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        userEmail.textContent = user.email;
-        userPic.src = user.photoURL;
-        userPic.style.display = "block";
-        loginBtn.style.display = "none";
-      } else {
-        userEmail.textContent = "";
-        loginBtn.style.display = "inline-block";
-        userPic.style.display = "none";
-        dropdown.style.display = "none";
+    <script>
+      function handleSearch() {
+        const query = document.getElementById("searchBar").value.trim().toLowerCase();
+        if (query.includes("pipe") || query.includes("pu")) {
+          window.location.href = "product.html#pipes";
+        } else if (query.includes("blow") || query.includes("gun")) {
+          window.location.href = "product.html#airblow";
+        } else {
+          alert("No matching products found. Try keywords like 'pipe' or 'gun'.");
+        }
       }
-    });
 
-    userPic.addEventListener("click", () => {
-      dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
-    });
+    </script>
 
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest("#userPic") && !e.target.closest("#dropdown")) {
-        dropdown.style.display = "none";
+    <script>  const keywordPages = {
+        "products": "product.html",
+        "product": "product.html",
+        "new": "product.html",
+        "pipes": "product.html",
+        "pu pipes": "product.html",
+        "air gun": "product.html",
+        "air guns": "product.html",
+        "harjus": "product.html",
+        "story": "cod.html",
+        "our story": "cod.html"
+      };
+
+      function handleSearch() {
+        const input = document.getElementById("searchBar").value.toLowerCase().trim();
+        for (let keyword in keywordPages) {
+          if (input.includes(keyword)) {
+            window.location.href = keywordPages[keyword];
+            return;
+          }
+        }
+        alert("No matching page found.");
       }
-    });
 
-    
-  document.getElementById("addToCartBtn").addEventListener("click", function () {
-    const product = {
-      id: "air-blow-gun",
-      name: "Air Blow Gun",
-      price: 499,
-      image: "mainobj3.png", // Update with actual image path
-      quantity: 1
-    };
+      function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("open");
+      }
+    </script>
+    <script>
 
-   
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let existingItem = cart.find(item => item.id === product.id);
+      function redirectToSecure() {
+        window.location.href = "secured-page.html";
+      }
 
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      cart.push(product);
-    }
+      function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('open');
+        document.body.classList.toggle('sidebar-open');
+      }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Item added to cart!");
-  });
- 
-  document.getElementById("addToCartBtn2").addEventListener("click", function () {
-    const product = {
-      id: "pu-pipes",
-      name: "PU Pipes",
-      price: 299,
-      image: "mainobj2.png", // Update with actual image path
-      quantity: 1
-    };
+      function toggleNotification() {
+        const panel = document.getElementById('notificationPanel');
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      }
+    </script>
+    <script>
+      function toggleReadMore() {
+        const dots = document.getElementById("dots");
+        const moreText = document.getElementById("moreText");
+        const btnText = document.getElementById("readMoreBtn");
 
-   
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let existingItem = cart.find(item => item.id === product.id);
+        if (dots.style.display === "none") {
+          dots.style.display = "inline";
+          moreText.style.display = "none";
+          btnText.innerHTML = "Read More";
+        } else {
+          dots.style.display = "none";
+          moreText.style.display = "inline";
+          btnText.innerHTML = "Read Less";
+        }
+      }
+    </script>
 
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      cart.push(product);
-    }
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+      import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Item added to cart!");
-  });
-</script>
-  </script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBnDGSg_K60_Tp7w13c-O8Jb9hLkErSCY8",
+        authDomain: "gamexd-110.firebaseapp.com",
+        projectId: "gamexd-110",
+        storageBucket: "gamexd-110.firebasestorage.app",
+        messagingSenderId: "501792431454",
+        appId: "1:501792431454:web:10024d189316ef9e2303cf"
+      };
 
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const provider = new GoogleAuthProvider();
+
+      const loginBtn = document.getElementById("loginBtn");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const userEmail = document.getElementById("userEmail");
+      const userPic = document.getElementById("userPic");
+      const dropdown = document.getElementById("dropdown");
+
+      loginBtn.addEventListener("click", () => {
+        signInWithPopup(auth, provider)
+          .then(result => console.log("Logged in as", result.user.email))
+          .catch(err => console.error(err));
+      });
+
+      logoutBtn.addEventListener("click", () => {
+        signOut(auth).then(() => location.reload());
+      });
+
+      onAuthStateChanged(auth, user => {
+        if (user) {
+          userEmail.textContent = user.email;
+          userPic.src = user.photoURL;
+          userPic.style.display = "block";
+          loginBtn.style.display = "none";
+        } else {
+          userEmail.textContent = "";
+          loginBtn.style.display = "inline-block";
+          userPic.style.display = "none";
+          dropdown.style.display = "none";
+        }
+      });
+
+      userPic.addEventListener("click", () => {
+        dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest("#userPic") && !e.target.closest("#dropdown")) {
+          dropdown.style.display = "none";
+        }
+      });
+
+    </script>
 </body>
+
 </html>
