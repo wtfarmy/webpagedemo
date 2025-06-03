@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -191,24 +190,6 @@
       /* Ensures images don't overflow */
     }
 
-    .slider {
-      position: relative;
-      max-width: 100%;
-      /* Full width of the parent container */
-      height: auto;
-    }
-
-    .slide {
-      display: none;
-      /* Hide slides initially */
-      width: 100%;
-      height: auto;
-    }
-
-    .slide img {
-      width: 100%;
-      border-radius: 10px;
-    }
 
     .price-tag {
       position: absolute;
@@ -233,7 +214,7 @@
     }
 
     /* Keyframes for the fade-in animation */
-    @keyframes fadeIn {
+    @keyframes fadeIn {                                                         
       from {
         opacity: 0;
       }
@@ -947,53 +928,6 @@
       cursor: pointer;
     }
 
- .slider-container {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-  margin: auto;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-.slider {
-  display: flex;
-  transition: transform 0.4s ease-in-out;
-  width: 100%;
-}
-
-.slider img {
-  width: 100%;
-  height: auto;
-  flex-shrink: 0;
-  object-fit: cover;
-}
-
-.nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  border: none;
-  color: #fff;
-  padding: 12px;
-  cursor: pointer;
-  font-size: 24px;
-  z-index: 1;
-  border-radius: 50%;
-}
-
-.left { left: 10px; }
-.right { right: 10px; }
-
-@media (max-width: 768px) {
-  .nav {
-    padding: 8px;
-    font-size: 18px;
-  }
-}
 
 .product-rating {
       color: #f8c32b;
@@ -1092,7 +1026,122 @@ a{
       gap: 20px;
       padding: 20px;
     }
-  
+ .why-harjus {
+  background: #f8f9fa;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.why-harjus .container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.why-harjus h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.reasons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.reason {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.reason:hover {
+  transform: translateY(-5px);
+}
+
+.reason i {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+.reason h3 {
+  font-size: 1.2rem;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.reason p {
+  color: #555;
+  font-size: 0.95rem;
+}.amazon-slider {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  padding: 0; /* Remove padding for borderless full screen */
+  width: 100%;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  transition: transform 0.3s ease;
+}
+
+.slide img:hover {
+  transform: scale(1.02);
+}
+
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px 15px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background 0.2s;
+}
+
+.slide-btn:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.slide-btn.prev {
+  left: 10px;
+}
+
+.slide-btn.next {
+  right: 10px;
+}
+
+@media (max-width: 768px) {
+  .slide-btn {
+    font-size: 1.5rem;
+    padding: 8px 12px;
+  }
+}
+
   </style><link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -1138,28 +1187,57 @@ a{
       </div>
     </div>
   </header>
-  <div class="game-slider-container">
-    <div class="badgetexticon">
-      <span class="badgtext">✨</span>
-      Most Popular
-    </div>
-    <br>
-    <br>
-    <div class="game-slider">
-      <div class="game-card22">
-        <span class="iconbadge22">Harjus Official</span>
-        <img src="Air BLOW GUN.png" onclick="window.location.href='product.html'"/>
-      </div>
-      <div class="game-card22">
-        <span class="iconbadge22">Harjus Official</span>
-        <img src="Air BLOW GUN (1).png" onclick="window.location.href='product.html'" />
-      </div>
-      <div class="game-card22">
-        <span class="iconbadge22">Harjus Official</span>
-        <img src="Air BLOW GUN (2).png"  onclick="window.location.href='product.html'"/>
-      </div>
-    </div>
-    <br>
+
+
+  
+   <div class="amazon-slider">
+  <button class="slide-btn prev">&#10094;</button>
+  <div class="slider-track">
+    <div class="slide"><img src="Blue and Yellow Playful Doodle Digital Brainstorm Presentation.jpg" alt="Product 1"></div>
+    <div class="slide"><img src="https://via.placeholder.com/200x250?text=Product+2" alt="Product 2"></div>
+    <div class="slide"><img src="https://via.placeholder.com/200x250?text=Product+3" alt="Product 3"></div>
+    <div class="slide"><img src="https://via.placeholder.com/200x250?text=Product+4" alt="Product 4"></div>
+    <div class="slide"><img src="https://via.placeholder.com/200x250?text=Product+5" alt="Product 5"></div>
+    <div class="slide"><img src="https://via.placeholder.com/200x250?text=Product+6" alt="Product 6"></div>
+  </div>
+  <button class="slide-btn next">&#10095;</button>
+</div><script>
+  const track = document.querySelector('.slider-track');
+  const slides = document.querySelectorAll('.slide');
+  const nextBtn = document.querySelector('.slide-btn.next');
+  const prevBtn = document.querySelector('.slide-btn.prev');
+
+  let index = 0;
+  const totalSlides = slides.length;
+
+  function updateSlidePosition() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  function showNextSlide() {
+    index = (index + 1) % totalSlides;
+    updateSlidePosition();
+  }
+
+  function showPrevSlide() {
+    index = (index - 1 + totalSlides) % totalSlides;
+    updateSlidePosition();
+  }
+
+  nextBtn.addEventListener('click', showNextSlide);
+  prevBtn.addEventListener('click', showPrevSlide);
+
+  // Auto slide every 4 seconds
+  let autoSlide = setInterval(showNextSlide, 3000);
+
+  // Optional: pause on hover
+  const slider = document.querySelector('.amazon-slider');
+  slider.addEventListener('mouseenter', () => clearInterval(autoSlide));
+  slider.addEventListener('mouseleave', () => {
+    autoSlide = setInterval(showNextSlide, 4000);
+  });
+</script>
+
     <br>
     <section class="features">
       <div><i class="fas fa-lock"></i>SECURE PAYMENTS</div>
@@ -1209,7 +1287,33 @@ a{
     </div>
   </div>
   </div>
-
+<section class="why-harjus">
+  <div class="container">
+    <h2>Why Choose Harjus India?</h2>
+    <div class="reasons">
+      <div class="reason">
+        <i class="fas fa-cogs"></i>
+        <h3>High-Quality Tools</h3>
+        <p>We provide durable, precision-engineered tools built for industrial and personal use.</p>
+      </div>
+      <div class="reason">
+        <i class="fas fa-truck"></i>
+        <h3>Fast & Reliable Delivery</h3>
+        <p>Quick shipping across India with real-time tracking and trusted logistics partners.</p>
+      </div>
+      <div class="reason">
+        <i class="fas fa-headset"></i>
+        <h3>24/7 Customer Support</h3>
+        <p>Our support team is always available to resolve your queries and provide expert guidance.</p>
+      </div>
+      <div class="reason">
+        <i class="fas fa-thumbs-up"></i>
+        <h3>Trusted by Professionals</h3>
+        <p>Preferred by technicians, engineers, and industrial experts across the country.</p>
+      </div>
+    </div>
+  </div>
+</section>
     <div class="story-section">
       <h2 class="netflix-title">Story of Harjus</h2>
       <p id="storyText" class="story-text">
@@ -1252,6 +1356,7 @@ a{
       <p>&copy; 2025 Harjus Hardwares. All rights reserved.</p>
     </div>
   </footer>
+
     <script>
       function handleSearch() {
         const query = document.getElementById("searchBar").value.trim().toLowerCase();
