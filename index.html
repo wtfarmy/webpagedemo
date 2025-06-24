@@ -1142,6 +1142,41 @@ a{
   }
 }
 
+        /* Loader styling */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .icon {
+            width: 150px;
+            margin-bottom: 30px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ffd000;
+            /* Amazon orange */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
   </style><link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -1153,7 +1188,25 @@ a{
 
 </head>
 
-<body>
+<body><!-- Loading Screen -->
+    <div id="loader">
+        <img src="harjus.jpg" class="icon" />
+        <div class="spinner"></div>
+    </div>
+    <script>
+        // Wait for page to fully load
+        window.addEventListener("load", () => {
+            const loader = document.getElementById("loader");
+            const main = document.getElementById("main-content");
+
+            // Delay to simulate loading time
+            setTimeout(() => {
+                loader.style.display = "none";
+                main.style.display = "block";
+            }, 2000); // 2 seconds
+        });
+
+    </script>
   <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
   <div class="sidebar" id="sidebar">
     <br>
